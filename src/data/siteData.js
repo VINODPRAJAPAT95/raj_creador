@@ -463,3 +463,4 @@ export const faqs = [
   { q: "Are bulk orders available?", a: "Yes, we handle wholesale and distributor-grade quantities." },
   { q: "Do you export internationally?", a: "Yes, export-ready documentation and product formats are available." },
 ];
+ 

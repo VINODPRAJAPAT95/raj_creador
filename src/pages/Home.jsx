@@ -61,12 +61,12 @@ const Home = () => (
     </section>
 
     {/* PRODUCT SHOWCASE */}
-    <section className="mx-auto max-w-7xl px-4 py-16">
+    {/* <section className="mx-auto max-w-7xl px-4 py-16">
       <SectionTitle eyebrow="Product Showcase" title="Luxury Ecommerce Product Experience" />
       <div className="rounded-3xl border border-silver/70 bg-white/75 p-10 text-center text-beige/90">
         Dynamic product sections are routed under each category with reusable product card architecture.
       </div>
-    </section>
+    </section> */}
 
     {/* WHY CHOOSE US */}
     <section className="mx-auto max-w-7xl px-4 py-16">
@@ -81,7 +81,7 @@ const Home = () => (
     </section>
 
     {/* SPIRITUAL EXPERIENCE */}
-    <section className="mx-auto max-w-7xl px-4 py-16">
+    {/* <section className="mx-auto max-w-7xl px-4 py-16">
       <SectionTitle eyebrow="Spiritual Experience" title="A Cinematic Divine Atmosphere" />
       <div className="overflow-hidden rounded-3xl border border-gold/20">
         <img
@@ -90,7 +90,7 @@ const Home = () => (
           className="h-80 w-full object-cover"
         />
       </div>
-    </section>
+    </section> */}
 
     {/* BEST SELLERS */}
     <section className="mx-auto max-w-7xl px-4 py-16">
@@ -134,13 +134,13 @@ const Home = () => (
     </section>
 
     {/* FAQ */}
-    <section className="mx-auto max-w-7xl px-4 py-16">
+    {/* <section className="mx-auto max-w-7xl px-4 py-16">
       <SectionTitle eyebrow="FAQs" title="Everything You Need To Know" />
       <FAQAccordion items={faqs} />
-    </section>
+    </section> */}
 
     {/* CONTACT */}
-    <section className="mx-auto grid max-w-7xl gap-8 px-4 py-16 md:grid-cols-2">
+    {/* <section className="mx-auto grid max-w-7xl gap-8 px-4 py-16 md:grid-cols-2">
       <div>
         <SectionTitle
           eyebrow="Contact CTA"
@@ -149,7 +149,7 @@ const Home = () => (
         />
       </div>
       <ContactForm />
-    </section>
+    </section> */}
   </>
 );
 
