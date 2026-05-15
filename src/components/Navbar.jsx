@@ -1,4 +1,14 @@
-import { ArrowLeftRight, Menu, ShoppingBag, X } from "lucide-react";
+import {
+  Menu,
+  ShoppingCart,
+  X,
+  House,
+  LayoutGrid,
+  Info,
+  HelpCircle,
+  Phone,
+} from "lucide-react";
+
 import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { navLinks } from "../data/siteData";
@@ -9,20 +19,29 @@ import MobileMenu from "./navigation/MobileMenu";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
-  const [reverseMenu, setReverseMenu] = useState(false);
+
   const { itemCount, setIsCartOpen } = useCart();
 
-  const orderedLinks = reverseMenu ? [...navLinks].reverse() : navLinks;
+  const orderedLinks = navLinks;
+
+  // ICONS
+  const navIcons = {
+    Home: <House size={14} />,
+    Categories: <LayoutGrid size={14} />,
+    About: <Info size={14} />,
+    FAQs: <HelpCircle size={14} />,
+    Contact: <Phone size={14} />,
+  };
 
   return (
-    <nav className="sticky top-10 z-50 border-b border-gold/25 bg-maroon text-white backdrop-blur-lg">
+    <nav className="sticky top-0 z-50 border-b border-[#E2C88B]/20 bg-[#5C0000] text-white">
 
       <div className="relative mx-auto flex max-w-7xl items-center justify-between px-4 py-4">
 
         {/* LOGO */}
         <Link
           to="/"
-          className="text-lg font-semibold tracking-[0.18em] text-gold-soft"
+          className="text-lg font-semibold tracking-[0.18em] text-[#F5D98F]"
         >
           <AnimatedBrandLogo />
         </Link>
@@ -32,33 +51,35 @@ const Navbar = () => {
 
           {orderedLinks.map((item) => {
 
-            // ⭐ ONLY Categories has MegaMenu
+            // CATEGORY MENU
             if (item.label === "Categories") {
               return (
                 <div key={item.path} className="relative group">
 
-                  {/* LINK */}
                   <NavLink
                     to={item.path}
                     className="
-                      rounded-full bg-white/10 px-3 py-1.5 text-xs uppercase
-                      tracking-[0.22em] text-gold-soft transition
-                      hover:bg-white/20 hover:text-white
+                      flex items-center gap-2
+                      rounded-full  px-4 py-2
+                      text-xs uppercase tracking-[0.22em]
+                      text-[#fffefc]
+                      transition-all duration-300
+                      hover: hover:text-[#F5D98F]
                     "
                   >
+                    {navIcons[item.label]}
                     {item.label}
                   </NavLink>
 
-                  {/* MEGA MENU (CENTER FIXED) */}
+                  {/* MEGA MENU */}
                   <div
                     className="
                       absolute left-1/2 top-full mt-4
                       w-[900px]
                       -translate-x-1/2
-
                       opacity-0 invisible
-                      group-hover:opacity-100 group-hover:visible
-
+                      group-hover:opacity-100
+                      group-hover:visible
                       transition-all duration-300 ease-out
                       z-[999]
                     "
@@ -76,44 +97,67 @@ const Navbar = () => {
                 key={item.path}
                 to={item.path}
                 className="
+                  flex items-center gap-2
                   text-xs uppercase tracking-[0.22em]
-                  text-white/90 transition hover:text-white
+                  text-white/90
+                  transition-all duration-300
+                  hover:text-[#F5D98F]
                 "
               >
+                {navIcons[item.label]}
                 {item.label}
               </NavLink>
             );
           })}
         </div>
 
-        {/* RIGHT ACTIONS */}
+        {/* RIGHT SIDE */}
         <div className="flex items-center gap-3">
 
-          {/* Reverse menu */}
+          {/* AMAZON STYLE CART */}
           <button
-            className="rounded-full border border-gold/50 bg-white/10 p-2 text-gold-soft"
-            onClick={() => setReverseMenu((v) => !v)}
-            title="Reverse menu order"
-          >
-            <ArrowLeftRight size={16} />
-          </button>
-
-          {/* Cart */}
-          <button
-            className="relative rounded-full border border-gold/50 bg-white/10 p-2 text-gold-soft"
             onClick={() => setIsCartOpen(true)}
+            className="
+              relative flex items-center gap-2
+              rounded-full border border-[#E2C88B]/40
+              bg-white/10
+              px-4 py-2
+              transition-all duration-300
+              hover:bg-[#E2C88B]
+              hover:text-[#5C0000]
+            "
           >
-            <ShoppingBag size={18} />
-
+            {/* COUNT */}
             {itemCount > 0 && (
-              <span className="absolute -right-1 -top-1 rounded-full bg-gold px-1.5 text-[10px] text-white">
+              <span
+                className="
+                  absolute -top-2 left-5
+                  flex h-5 min-w-[20px]
+                  items-center justify-center
+                  rounded-full bg-[#FFB703]
+                  px-1 text-[10px]
+                  font-bold text-black
+                "
+              >
                 {itemCount}
               </span>
             )}
+
+            <ShoppingCart size={20} />
+
+            <span className="hidden text-xs font-semibold uppercase tracking-[0.15em] sm:block">
+              Cart
+            </span>
           </button>
 
-          {/* Mobile */}
-          <button className="md:hidden" onClick={() => setOpen((v) => !v)}>
+          {/* MOBILE MENU */}
+          <button
+            className="
+              rounded-full border border-white/20
+              bg-white/10 p-2 md:hidden
+            "
+            onClick={() => setOpen((v) => !v)}
+          >
             {open ? <X size={20} /> : <Menu size={20} />}
           </button>
 

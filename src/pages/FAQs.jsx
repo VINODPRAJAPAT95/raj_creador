@@ -4,7 +4,7 @@ import { faqs } from "../data/siteData";
 
 const FAQs = () => (
   <section className="mx-auto max-w-4xl px-4 py-16">
-    <SectionTitle eyebrow="FAQs" title="Premium Support Answers" />
+    <SectionTitle eyebrow="FAQs"  />
     <FAQAccordion items={faqs} />
   </section>
 );
