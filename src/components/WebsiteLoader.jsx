@@ -1,10 +1,12 @@
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
+const poojaItems = ["🌸", "🪔", "✨", "🌺", "🪷"];
+
 const WebsiteLoader = () => {
   const [hide, setHide] = useState(false);
 
-  // AUTO HIDE AFTER 2.5 SEC
+  // AUTO HIDE
   useEffect(() => {
     const timer = setTimeout(() => {
       setHide(true);
@@ -18,7 +20,6 @@ const WebsiteLoader = () => {
   return (
     <motion.div
       initial={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
       animate={{ opacity: hide ? 0 : 1 }}
       transition={{ duration: 0.6 }}
       className="fixed inset-0 z-[999] overflow-hidden bg-[#0f0604]"
@@ -32,29 +33,35 @@ const WebsiteLoader = () => {
         <div className="absolute right-0 top-0 h-72 w-72 rounded-full bg-[#7a1020]/10 blur-[120px]" />
       </div>
 
-      {/* PARTICLES */}
-      {[...Array(10)].map((_, i) => (
+      {/* FALLING POOJA ITEMS */}
+      {[...Array(18)].map((_, i) => (
         <motion.div
           key={i}
-          className="absolute rounded-full bg-[#c8a96b]"
-          style={{
-            width: Math.random() * 5 + 3,
-            height: Math.random() * 5 + 3,
-            left: `${Math.random() * 100}%`,
-            top: `${Math.random() * 100}%`,
+          initial={{
+            y: -120,
+            x: Math.random() * window.innerWidth,
+            opacity: 0,
+            rotate: 0,
           }}
           animate={{
-            y: [-10, -100],
-            opacity: [0, 0.8, 0],
-            scale: [0.5, 1.2, 0.5],
+            y: window.innerHeight + 100,
+            opacity: [0, 1, 1, 0],
+            rotate: [0, 180, 360],
+            x: [
+              Math.random() * window.innerWidth,
+              Math.random() * window.innerWidth,
+            ],
           }}
           transition={{
-            duration: 4,
+            duration: 6 + Math.random() * 4,
             repeat: Infinity,
-            ease: "easeInOut",
-            delay: Math.random() * 2,
+            delay: Math.random() * 5,
+            ease: "linear",
           }}
-        />
+          className="absolute text-2xl md:text-3xl"
+        >
+          {poojaItems[Math.floor(Math.random() * poojaItems.length)]}
+        </motion.div>
       ))}
 
       {/* MAIN CONTENT */}
@@ -84,7 +91,7 @@ const WebsiteLoader = () => {
             className="absolute h-32 w-32 rounded-full border-[3px] border-transparent border-t-[#c8a96b] border-r-[#c8a96b]/70"
           />
 
-          {/* OM */}
+          {/* OM SYMBOL */}
           <motion.div
             animate={{
               opacity: [0.7, 1, 0.7],
@@ -100,7 +107,7 @@ const WebsiteLoader = () => {
           </motion.div>
         </motion.div>
 
-        {/* LOGO */}
+        {/* BRAND NAME */}
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -132,7 +139,7 @@ const WebsiteLoader = () => {
           />
         </div>
 
-        {/* TEXT */}
+        {/* LOADING TEXT */}
         <motion.p
           animate={{
             opacity: [0.4, 1, 0.4],

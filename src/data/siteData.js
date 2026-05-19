@@ -1,465 +1,471 @@
+// ─── LOCAL IMAGE IMPORTS ───────────────────────────────────────────────────
+import React, { useEffect, useRef, useState } from "react";
+
+// ── Category images ─────────────────────────────────────────────────────────
+import imgCategoryIncenseSticks   from "../assets/images/categories/incense-sticks.jpg";
+import imgCategoryDhoopSticks     from "../assets/images/categories/dhoop-sticks.jpg";
+import imgCategoryPremiumIncense  from "../assets/images/categories/premium-incense.jpg";
+import imgCategoryPerfumedIncense from "../assets/images/categories/perfumed-incense.jpg";
+import imgCategoryAromaFragrance  from "../assets/images/categories/aroma-fragrance.jpg";
+import imgCategoryPoojaDeep       from "../assets/images/categories/pooja-deep.jpg";
+import imgCategoryKhadiSoaps      from "../assets/images/categories/khadi-soaps.jpg";
+import imgCategoryLongSticks      from "../assets/images/categories/long-sticks.jpg";
+
+// ── Incense Sticks ──────────────────────────────────────────────────────────
+import imgSacredChandan              from "../assets/images/incense-sticks/sacred-chandan.jpg";
+import imgSacredChandanHover         from "../assets/images/incense-sticks/sacred-chandan-hover.jpg";
+import imgSacredOudh                 from "../assets/images/incense-sticks/sacred-oudh.jpg";
+import imgSacredOudhHover            from "../assets/images/incense-sticks/sacred-oudh-hover.jpg";
+import imgSacredRose                 from "../assets/images/incense-sticks/sacred-rose.jpg";
+import imgSacredRoseHover            from "../assets/images/incense-sticks/sacred-rose-hover.jpg";
+
+import imgExoticAmber                from "../assets/images/incense-sticks/exotic-amber.jpg";
+import imgExoticAmberHover           from "../assets/images/incense-sticks/exotic-amber-hover.jpg";
+import imgExoticBakhoor              from "../assets/images/incense-sticks/exotic-bakhoor.jpg";
+import imgExoticBakhoorHover         from "../assets/images/incense-sticks/exotic-bakhoor-hover.jpg";
+import imgExoticHeena                from "../assets/images/incense-sticks/exotic-heena.jpg";
+import imgExoticHeenaHover           from "../assets/images/incense-sticks/exotic-heena-hover.jpg";
+import imgExoticChandan              from "../assets/images/incense-sticks/exotic-chandan.jpg";
+import imgExoticChandanHover         from "../assets/images/incense-sticks/exotic-chandan-hover.jpg";
+import imgExoticMusk                 from "../assets/images/incense-sticks/exotic-musk.jpg";
+import imgExoticMuskHover            from "../assets/images/incense-sticks/exotic-musk-hover.jpg";
+import imgExoticOudh                 from "../assets/images/incense-sticks/exotic-oudh.jpg";
+import imgExoticOudhHover            from "../assets/images/incense-sticks/exotic-oudh-hover.jpg";
+import imgExoticSaffron              from "../assets/images/incense-sticks/exotic-saffron.jpg";
+import imgExoticSaffronHover         from "../assets/images/incense-sticks/exotic-saffron-hover.jpg";
+import imgExoticRose                 from "../assets/images/incense-sticks/exotic-rose.jpg";
+import imgExoticRoseHover            from "../assets/images/incense-sticks/exotic-rose-hover.jpg";
+
+import imgPremiumOudh                from "../assets/images/incense-sticks/premium-oudh.jpg";
+import imgPremiumOudhHover           from "../assets/images/incense-sticks/premium-oudh-hover.jpg";
+import imgPremiumKhus                from "../assets/images/incense-sticks/premium-khus.jpg";
+import imgPremiumKhusHover           from "../assets/images/incense-sticks/premium-khus-hover.jpg";
+import imgPremiumChandan             from "../assets/images/incense-sticks/premium-chandan.jpg";
+import imgPremiumChandanHover        from "../assets/images/incense-sticks/premium-chandan-hover.jpg";
+import imgPremiumRose                from "../assets/images/incense-sticks/premium-rose.jpg";
+import imgPremiumRoseHover           from "../assets/images/incense-sticks/premium-rose-hover.jpg";
+import imgUltraPremiumMajmua         from "../assets/images/incense-sticks/ultra-premium-majmua.jpg";
+import imgUltraPremiumMajmuaHover    from "../assets/images/incense-sticks/ultra-premium-majmua-hover.jpg";
+import imgUltraPremiumPatchouli      from "../assets/images/incense-sticks/ultra-premium-patchouli.jpg";
+import imgUltraPremiumPatchouliHover from "../assets/images/incense-sticks/ultra-premium-patchouli-hover.jpg";
+import imgUltraPremiumAgarwood       from "../assets/images/incense-sticks/ultra-premium-agarwood.jpg";
+import imgUltraPremiumAgarwoodHover  from "../assets/images/incense-sticks/ultra-premium-agarwood-hover.jpg";
+import imgUltraPremiumWhiteOudh      from "../assets/images/incense-sticks/ultra-premium-white-oudh.jpg";
+import imgUltraPremiumWhiteOudhHover from "../assets/images/incense-sticks/ultra-premium-white-oudh-hover.jpg";
+
+import imgDevdutt                    from "../assets/images/incense-sticks/devdutt.jpg";
+import imgDevduttHover               from "../assets/images/incense-sticks/devdutt-hover.jpg";
+import imgMahatejas                  from "../assets/images/incense-sticks/mahatejas.jpg";
+import imgMahatejasHover             from "../assets/images/incense-sticks/mahatejas-hover.jpg";
+import imgShrivardhan                from "../assets/images/incense-sticks/shrivardhan.jpg";
+import imgShrivardhanHover           from "../assets/images/incense-sticks/shrivardhan-hover.jpg";
+import imgSudarshan                  from "../assets/images/incense-sticks/sudarshan.jpg";
+import imgSudarshanHover             from "../assets/images/incense-sticks/sudarshan-hover.jpg";
+import imgShivansh                   from "../assets/images/incense-sticks/shivansh.jpg";
+import imgShivanshHover              from "../assets/images/incense-sticks/shivansh-hover.jpg";
+import imgTapodhan                   from "../assets/images/incense-sticks/tapodhan.jpg";
+import imgTapodhanHover              from "../assets/images/incense-sticks/tapodhan-hover.jpg";
+import imgDhyanrath                  from "../assets/images/incense-sticks/dhyanrath.jpg";
+import imgDhyanrathHover             from "../assets/images/incense-sticks/dhyanrath-hover.jpg";
+import imgTejomay                    from "../assets/images/incense-sticks/tejomay.jpg";
+import imgTejomayHover               from "../assets/images/incense-sticks/tejomay-hover.jpg";
+
+// ── Dhoop Sticks ────────────────────────────────────────────────────────────
+import imgHarmony3in1                from "../assets/images/dhoop-sticks/harmony-3in1.jpg";
+import imgHarmony3in1Hover           from "../assets/images/dhoop-sticks/harmony-3in1-hover.jpg";
+import imgMograBliss                 from "../assets/images/dhoop-sticks/mogra-bliss.jpg";
+import imgMograBlissHover            from "../assets/images/dhoop-sticks/mogra-bliss-hover.jpg";
+import imgRoseElegance               from "../assets/images/dhoop-sticks/rose-elegance.jpg";
+import imgRoseEleganceHover          from "../assets/images/dhoop-sticks/rose-elegance-hover.jpg";
+import imgLavenderCalm               from "../assets/images/dhoop-sticks/lavender-calm.jpg";
+import imgLavenderCalmHover          from "../assets/images/dhoop-sticks/lavender-calm-hover.jpg";
+import imgChandanDivine              from "../assets/images/dhoop-sticks/chandan-divine.jpg";
+import imgChandanDivineHover         from "../assets/images/dhoop-sticks/chandan-divine-hover.jpg";
+import imgKasturiMystique            from "../assets/images/dhoop-sticks/kasturi-mystique.jpg";
+import imgKasturiMystiqueHover       from "../assets/images/dhoop-sticks/kasturi-mystique-hover.jpg";
+import imgChampaGolden               from "../assets/images/dhoop-sticks/champa-golden.jpg";
+import imgChampaGoldenHover          from "../assets/images/dhoop-sticks/champa-golden-hover.jpg";
+import imgLobanRoyale                from "../assets/images/dhoop-sticks/loban-royale.jpg";
+import imgLobanRoyaleHover           from "../assets/images/dhoop-sticks/loban-royale-hover.jpg";
+import imgGuggalSacred               from "../assets/images/dhoop-sticks/guggal-sacred.jpg";
+import imgGuggalSacredHover          from "../assets/images/dhoop-sticks/guggal-sacred-hover.jpg";
+import imgHarmonyDhoop80g            from "../assets/images/dhoop-sticks/harmony-80g.jpg";
+import imgHarmonyDhoop80gHover       from "../assets/images/dhoop-sticks/harmony-80g-hover.jpg";
+import imgSpecialChandan             from "../assets/images/dhoop-sticks/special-chandan.jpg";
+import imgSpecialChandanHover        from "../assets/images/dhoop-sticks/special-chandan-hover.jpg";
+import imgSpecialRose                from "../assets/images/dhoop-sticks/special-rose.jpg";
+import imgSpecialRoseHover           from "../assets/images/dhoop-sticks/special-rose-hover.jpg";
+import imgPeace                      from "../assets/images/dhoop-sticks/peace.jpg";
+import imgPeaceHover                 from "../assets/images/dhoop-sticks/peace-hover.jpg";
+import imgAroma                      from "../assets/images/dhoop-sticks/aroma.jpg";
+import imgAromaHover                 from "../assets/images/dhoop-sticks/aroma-hover.jpg";
+import imgRichGold                   from "../assets/images/dhoop-sticks/rich-gold.jpg";
+import imgRichGoldHover              from "../assets/images/dhoop-sticks/rich-gold-hover.jpg";
+import imgDivineMeditation           from "../assets/images/dhoop-sticks/divine-meditation.jpg";
+import imgDivineMeditationHover      from "../assets/images/dhoop-sticks/divine-meditation-hover.jpg";
+
+
+// ═══════════════════════════════════════════════════════════════════════════
+// ── CARD STYLES ────────────────────────────────────────────────────────────
+// ═══════════════════════════════════════════════════════════════════════════
+
+const CARD_CSS = `
+.rp-card {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #ffffff;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+  transition: box-shadow 0.35s ease, transform 0.35s ease;
+  cursor: pointer;
+  user-select: none;
+}
+.rp-card:hover {
+  box-shadow: 0 10px 36px rgba(0,0,0,0.18);
+  transform: translateY(-4px);
+}
+
+/* ── Image container ── */
+.rp-card__img-wrap {
+  position: relative;
+  width: 100%;
+  height: 240px;
+  overflow: hidden;
+  background: #f5f0ea;
+}
+
+/* Both images fill the container absolutely */
+.rp-card__img-wrap img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  will-change: opacity, transform;
+}
+
+/* ─────────────────────────────────────────────────────
+   DEFAULT IMAGE
+   Normal  → visible (opacity 1), no zoom (scale 1), on top (z-index 2)
+   Hovered → fades out (opacity 0), zooms in (scale 1.08), drops behind (z-index 1)
+             z-index change is delayed 0.5s so it only swaps AFTER fade completes
+             — this eliminates any mid-transition flash.
+   ───────────────────────────────────────────────────── */
+.rp-card__img-default {
+  opacity: 1;
+  transform: scale(1);
+  z-index: 2;
+  transition:
+    opacity   0.5s ease,
+    transform 0.5s ease,
+    z-index   0s   linear 0s;
+}
+.rp-card__img-default.hovered {
+  opacity: 0;
+  transform: scale(1.08);
+  z-index: 1;
+  transition:
+    opacity   0.5s ease,
+    transform 0.5s ease,
+    z-index   0s   linear 0.5s;   /* swap AFTER fade done → no flash */
+}
+
+/* ─────────────────────────────────────────────────────
+   HOVER IMAGE
+   Normal  → hidden (opacity 0), already zoomed (scale 1.08), behind (z-index 1)
+             Pre-zoomed so there is NO scale-jump pop when it first appears.
+   Hovered → fades in (opacity 1), stays zoomed (scale 1.08), comes to front (z-index 2)
+             z-index rises immediately so it's ready before opacity finishes.
+   ───────────────────────────────────────────────────── */
+.rp-card__img-hover {
+  opacity: 0;
+  transform: scale(1.08);   /* pre-zoomed → no pop/flash on first hover */
+  z-index: 1;
+  transition:
+    opacity   0.5s ease,
+    transform 0.5s ease,
+    z-index   0s   linear 0s;
+}
+.rp-card__img-hover.hovered {
+  opacity: 1;
+  transform: scale(1.08);
+  z-index: 2;
+  transition:
+    opacity   0.5s ease,
+    transform 0.5s ease,
+    z-index   0s   linear 0s;
+}
+
+/* ── Card body ── */
+.rp-card__body {
+  padding: 14px 16px 18px;
+  position: relative;
+  z-index: 3;
+}
+.rp-card__name {
+  margin: 0 0 3px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #1a1a1a;
+  line-height: 1.3;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.rp-card__weight {
+  margin: 0 0 7px;
+  font-size: 12px;
+  color: #999;
+}
+.rp-card__price {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 700;
+  color: #b5451b;
+}
+.rp-card__desc {
+  margin: 6px 0 0;
+  font-size: 12px;
+  color: #777;
+  line-height: 1.45;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+`;
+
+let _stylesInjected = false;
+function injectCardStyles() {
+  if (_stylesInjected || typeof document === "undefined") return;
+  const el = document.createElement("style");
+  el.setAttribute("data-rp-product-card", "1");
+  el.textContent = CARD_CSS;
+  document.head.appendChild(el);
+  _stylesInjected = true;
+}
+
+
+// ═══════════════════════════════════════════════════════════════════════════
+// ── ProductCard ────────────────────────────────────────────────────────────
+// ═══════════════════════════════════════════════════════════════════════════
+
+export function ProductCard({ product, onClick, className = "" }) {
+  const mounted = useRef(false);
+  const [hovered, setHovered] = useState(false);
+
+  useEffect(function () {
+    if (!mounted.current) {
+      injectCardStyles();
+      mounted.current = true;
+    }
+  }, []);
+
+  const { name, weight, price, description, image, imageHover } = product;
+  const hoverSrc = imageHover || image;
+
+  return React.createElement(
+    "div",
+    {
+      className: ("rp-card " + className).trim(),
+      onClick:   onClick,
+      role:      onClick ? "button" : undefined,
+      tabIndex:  onClick ? 0        : undefined,
+      onMouseEnter: function () { setHovered(true);  },
+      onMouseLeave: function () { setHovered(false); },
+      onKeyDown: onClick
+        ? function (e) { if (e.key === "Enter") onClick(); }
+        : undefined,
+    },
+
+    // ── Image wrap ──
+    React.createElement(
+      "div",
+      { className: "rp-card__img-wrap" },
+
+      // HOVER image — behind by default, pre-zoomed, fades IN on hover
+      // loading="eager" preloads it immediately → zero flicker on very first hover
+      React.createElement("img", {
+        src:       hoverSrc,
+        alt:       name + " - alternate view",
+        className: "rp-card__img-hover" + (hovered ? " hovered" : ""),
+        loading:   "eager",
+        draggable: false,
+      }),
+
+      // DEFAULT image — on top by default, fades OUT on hover
+      React.createElement("img", {
+        src:       image,
+        alt:       name,
+        className: "rp-card__img-default" + (hovered ? " hovered" : ""),
+        loading:   "lazy",
+        draggable: false,
+      })
+    ),
+
+    // ── Card body ──
+    React.createElement(
+      "div",
+      { className: "rp-card__body" },
+      React.createElement("p", { className: "rp-card__name"   }, name),
+      weight      ? React.createElement("p", { className: "rp-card__weight" }, weight)      : null,
+      React.createElement("p", { className: "rp-card__price"   }, price),
+      description ? React.createElement("p", { className: "rp-card__desc"   }, description) : null
+    )
+  );
+}
+
+
+// ═══════════════════════════════════════════════════════════════════════════
+// ── STATIC DATA ────────────────────────────────────────────────────────────
+// ═══════════════════════════════════════════════════════════════════════════
+
 export const topbarText = "Spreading Fragrance Since 1981";
 
 export const navLinks = [
-  { label: "Home", path: "/" },
+  { label: "Home",       path: "/" },
   { label: "Categories", path: "/categories" },
-  { label: "About", path: "/about" },
-  // { label: "Services", path: "/services" },
-  { label: "FAQs", path: "/faqs" },
-  { label: "Contact", path: "/contact" },
+  { label: "About",      path: "/about" },
+  { label: "FAQs",       path: "/faqs" },
+  { label: "Contact",    path: "/contact" },
 ];
 
-const defaultImage =
-  "https://images.unsplash.com/photo-1588405748880-12d1d2a59b80?auto=format&fit=crop&w=1200&q=80";
-
-const makeProduct = (name, weight, price, notes = "", image = defaultImage) => ({
+const makeProduct = (name, weight, price, notes, image, imageHover) => ({
   name,
   weight,
   price,
-  variants: weight,
+  variants:    weight,
   description: notes || "Premium fragrance offering from RAJPAL PRODUCTS catalog.",
   image,
+  imageHover:  imageHover || image,
 });
 
+
+// ── Product Catalog ──────────────────────────────────────────────────────────
+
 export const productCatalog = {
+
   "incense-sticks": {
     sections: [
       {
         title: "Sacred Series",
         products: [
-          makeProduct("Sacred Chandan", "50g", "₹1800", "", "https://images.unsplash.com/photo-1602928298849-e4b8b3bf9c12?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Sacred Oudh", "50g", "₹1200", "", "https://images.unsplash.com/photo-1603905490932-09ba5f285a79?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Sacred Rose", "50g", "₹900", "", "https://images.unsplash.com/photo-1559181567-c3190ca9959b?auto=format&fit=crop&w=600&q=80"),
+          makeProduct("Sacred Chandan", "50g", "₹1800", "", imgSacredChandan, imgSacredChandanHover),
+          makeProduct("Sacred Oudh",    "50g", "₹1200", "", imgSacredOudh,    imgSacredOudhHover),
+          makeProduct("Sacred Rose",    "50g", "₹900",  "", imgSacredRose,    imgSacredRoseHover),
         ],
       },
       {
         title: "Exotic Series",
         products: [
-          makeProduct("Exotic Amber", "50g / 250g", "₹135 / ₹575", "", "https://images.unsplash.com/photo-1574169208507-84376144848b?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Exotic Bakhoor", "50g / 250g", "₹135 / ₹575", "", "https://images.unsplash.com/photo-1556909172-54557c7e4fb7?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Exotic Heena", "50g / 250g", "₹135 / ₹575", "", "https://images.unsplash.com/photo-1583292650898-7d22cd27ca6f?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Exotic Chandan", "50g / 250g", "₹135 / ₹575", "", "https://images.unsplash.com/photo-1600369672770-985fd30004eb?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Exotic Musk", "50g / 250g", "₹135 / ₹575", "", "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Exotic Oudh", "50g / 250g", "₹135 / ₹575", "", "https://images.unsplash.com/photo-1588405748880-12d1d2a59b80?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Exotic Saffron", "50g / 250g", "₹135 / ₹575", "", "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Exotic Rose", "50g / 250g", "₹135 / ₹575", "", "https://images.unsplash.com/photo-1455659817273-f96807779a8a?auto=format&fit=crop&w=600&q=80"),
+          makeProduct("Exotic Amber",   "50g / 250g", "₹135 / ₹575", "", imgExoticAmber,   imgExoticAmberHover),
+          makeProduct("Exotic Bakhoor", "50g / 250g", "₹135 / ₹575", "", imgExoticBakhoor, imgExoticBakhoorHover),
+          makeProduct("Exotic Heena",   "50g / 250g", "₹135 / ₹575", "", imgExoticHeena,   imgExoticHeenaHover),
+          makeProduct("Exotic Chandan", "50g / 250g", "₹135 / ₹575", "", imgExoticChandan, imgExoticChandanHover),
+          makeProduct("Exotic Musk",    "50g / 250g", "₹135 / ₹575", "", imgExoticMusk,    imgExoticMuskHover),
+          makeProduct("Exotic Oudh",    "50g / 250g", "₹135 / ₹575", "", imgExoticOudh,    imgExoticOudhHover),
+          makeProduct("Exotic Saffron", "50g / 250g", "₹135 / ₹575", "", imgExoticSaffron, imgExoticSaffronHover),
+          makeProduct("Exotic Rose",    "50g / 250g", "₹135 / ₹575", "", imgExoticRose,    imgExoticRoseHover),
         ],
       },
       {
         title: "Premium & Ultra Premium",
         products: [
-          makeProduct("Premium Oudh", "50g / 250g", "₹325 / ₹1500", "", "https://images.unsplash.com/photo-1604480132736-44c188fe4d20?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Premium Khus", "50g / 250g", "₹325 / ₹1500", "", "https://images.unsplash.com/photo-1616791151821-b3c8a3af8e12?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Premium Chandan", "50g / 250g", "₹275 / ₹1250", "", "https://images.unsplash.com/photo-1599839619526-03bd12d6d962?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Premium Rose", "50g / 250g", "₹275 / ₹1250", "", "https://images.unsplash.com/photo-1490750967868-88df5691cc71?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Ultra Premium Majmua", "50g / 250g", "₹400 / ₹1800", "", "https://images.unsplash.com/photo-1615485290382-441e4d049cb5?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Ultra Premium Patchouli", "50g / 250g", "₹300 / ₹1500", "", "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Ultra Premium Agarwood", "50g / 250g", "₹300 / ₹1500", "", "https://images.unsplash.com/photo-1544376936-ade9e0c45753?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Ultra Premium White Oudh", "50g / 250g", "₹275 / ₹1250", "", "https://images.unsplash.com/photo-1578662996442-48f60103fc96?auto=format&fit=crop&w=600&q=80"),
+          makeProduct("Premium Oudh",             "50g / 250g", "₹325 / ₹1500", "", imgPremiumOudh,            imgPremiumOudhHover),
+          makeProduct("Premium Khus",             "50g / 250g", "₹325 / ₹1500", "", imgPremiumKhus,            imgPremiumKhusHover),
+          makeProduct("Premium Chandan",          "50g / 250g", "₹275 / ₹1250", "", imgPremiumChandan,         imgPremiumChandanHover),
+          makeProduct("Premium Rose",             "50g / 250g", "₹275 / ₹1250", "", imgPremiumRose,            imgPremiumRoseHover),
+          makeProduct("Ultra Premium Majmua",     "50g / 250g", "₹400 / ₹1800", "", imgUltraPremiumMajmua,     imgUltraPremiumMajmuaHover),
+          makeProduct("Ultra Premium Patchouli",  "50g / 250g", "₹300 / ₹1500", "", imgUltraPremiumPatchouli,  imgUltraPremiumPatchouliHover),
+          makeProduct("Ultra Premium Agarwood",   "50g / 250g", "₹300 / ₹1500", "", imgUltraPremiumAgarwood,   imgUltraPremiumAgarwoodHover),
+          makeProduct("Ultra Premium White Oudh", "50g / 250g", "₹275 / ₹1250", "", imgUltraPremiumWhiteOudh,  imgUltraPremiumWhiteOudhHover),
         ],
       },
       {
         title: "Divya Mandir Series",
         products: [
-          makeProduct("Devdutt Incense Stick", "250g", "₹175", "Gift of the Gods", "https://images.unsplash.com/photo-1603400521630-9f2de124b33b?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Mahatejas Incense Stick", "250g", "₹175", "Great Divine Radiance", "https://images.unsplash.com/photo-1609501676732-3e50cda59b64?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Shrivardhan Incense Stick", "250g", "₹175", "Increases Prosperity", "https://images.unsplash.com/photo-1582560469781-1f0bd6a0b3f4?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Sudarshan Incense Stick", "250g", "₹175", "Pure Vision", "https://images.unsplash.com/photo-1601490618684-f7b6fb14c09b?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Shivansh Incense Stick", "250g", "₹175", "A Part of Shiva", "https://images.unsplash.com/photo-1518640467707-6811f4a6ab73?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Tapodhan Incense Stick", "250g", "₹175", "Absorbed in Meditation", "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Dhyanrath Incense Stick", "250g", "₹175", "Absorbed in Meditation", "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Tejomay Incense Stick", "250g", "₹175", "Filled with Divine Light", "https://images.unsplash.com/photo-1574169208507-84376144848b?auto=format&fit=crop&w=600&q=80"),
+          makeProduct("Devdutt Incense Stick",     "250g", "₹175", "Gift of the Gods",         imgDevdutt,     imgDevduttHover),
+          makeProduct("Mahatejas Incense Stick",   "250g", "₹175", "Great Divine Radiance",    imgMahatejas,   imgMahatejasHover),
+          makeProduct("Shrivardhan Incense Stick", "250g", "₹175", "Increases Prosperity",     imgShrivardhan, imgShrivardhanHover),
+          makeProduct("Sudarshan Incense Stick",   "250g", "₹175", "Pure Vision",              imgSudarshan,   imgSudarshanHover),
+          makeProduct("Shivansh Incense Stick",    "250g", "₹175", "A Part of Shiva",          imgShivansh,    imgShivanshHover),
+          makeProduct("Tapodhan Incense Stick",    "250g", "₹175", "Absorbed in Meditation",   imgTapodhan,    imgTapodhanHover),
+          makeProduct("Dhyanrath Incense Stick",   "250g", "₹175", "Absorbed in Meditation",   imgDhyanrath,   imgDhyanrathHover),
+          makeProduct("Tejomay Incense Stick",     "250g", "₹175", "Filled with Divine Light", imgTejomay,     imgTejomayHover),
         ],
       },
     ],
   },
+
   "dhoop-sticks": {
     sections: [
       {
         title: "Nature's Bouquet",
         products: [
-          makeProduct("Harmony (3-in-1)", "200g", "₹200", "", "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Mogra (Bliss)", "200g", "₹200", "", "https://images.unsplash.com/photo-1484593831335-c3d2468d2c26?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Rose (Elegance)", "200g", "₹200", "", "https://images.unsplash.com/photo-1495078429430-b9049e87abd4?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Lavender (Calm)", "200g", "₹200", "", "https://images.unsplash.com/photo-1528360983277-13d401cdc186?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Chandan (Divine)", "200g", "₹200", "", "https://images.unsplash.com/photo-1533038590840-1cde6e668a91?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Kasturi (Mystique)", "200g", "₹200", "", "https://images.unsplash.com/photo-1548082716-e8a13c2b48c1?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Champa (Golden)", "200g", "₹200", "", "https://images.unsplash.com/photo-1464982326199-86f32f81b211?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Loban (Royale)", "200g", "₹200", "", "https://images.unsplash.com/photo-1556765114-b527c8a19f04?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Guggal (Sacred)", "200g", "₹200", "", "https://images.unsplash.com/photo-1603400521630-9f2de124b33b?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Harmony Dhoop Stick", "80g", "₹80", "", "https://images.unsplash.com/photo-1615485290382-441e4d049cb5?auto=format&fit=crop&w=600&q=80"),
+          makeProduct("Harmony (3-in-1)",   "200g", "₹200", "", imgHarmony3in1,     imgHarmony3in1Hover),
+          makeProduct("Mogra (Bliss)",       "200g", "₹200", "", imgMograBliss,      imgMograBlissHover),
+          makeProduct("Rose (Elegance)",     "200g", "₹200", "", imgRoseElegance,    imgRoseEleganceHover),
+          makeProduct("Lavender (Calm)",     "200g", "₹200", "", imgLavenderCalm,    imgLavenderCalmHover),
+          makeProduct("Chandan (Divine)",    "200g", "₹200", "", imgChandanDivine,   imgChandanDivineHover),
+          makeProduct("Kasturi (Mystique)",  "200g", "₹200", "", imgKasturiMystique, imgKasturiMystiqueHover),
+          makeProduct("Champa (Golden)",     "200g", "₹200", "", imgChampaGolden,    imgChampaGoldenHover),
+          makeProduct("Loban (Royale)",      "200g", "₹200", "", imgLobanRoyale,     imgLobanRoyaleHover),
+          makeProduct("Guggal (Sacred)",     "200g", "₹200", "", imgGuggalSacred,    imgGuggalSacredHover),
+          makeProduct("Harmony Dhoop Stick", "80g",  "₹80",  "", imgHarmonyDhoop80g, imgHarmonyDhoop80gHover),
         ],
       },
       {
         title: "Premium Dhoop",
         products: [
-          makeProduct("Special Chandan", "50g", "₹75", "", "https://images.unsplash.com/photo-1518640467707-6811f4a6ab73?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Special Rose", "50g", "₹75", "", "https://images.unsplash.com/photo-1529778873920-4da4926a72c2?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Peace", "50g", "₹75", "", "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Aroma", "50g", "₹75", "", "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Rich Gold", "50g", "₹75", "", "https://images.unsplash.com/photo-1574169208507-84376144848b?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Divine Meditation", "50g", "₹75", "", "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Red Wood", "50g", "₹135", "", "https://images.unsplash.com/photo-1542273917363-3b1817f69a2d?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Mysore Chandan", "50g", "₹135", "", "https://images.unsplash.com/photo-1599839619526-03bd12d6d962?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Kesar Chandan", "50g", "₹135", "", "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Saffron", "50g", "₹150", "", "https://images.unsplash.com/photo-1617347454431-f49d7ff5c3b1?auto=format&fit=crop&w=600&q=80"),
-        ],
-      },
-      {
-        title: "Long & Pure Dhoop",
-        products: [
-          makeProduct("Mysore Chandan", "100g", "₹180", "", "https://images.unsplash.com/photo-1600369672770-985fd30004eb?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Khus", "100g", "₹180", "", "https://images.unsplash.com/photo-1601490618684-f7b6fb14c09b?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Royal King", "100g", "₹180", "", "https://images.unsplash.com/photo-1604480132736-44c188fe4d20?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Signature", "100g", "₹180", "", "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Red Wood Dhoop Cups", "12 cups", "₹225", "", "https://images.unsplash.com/photo-1542273917363-3b1817f69a2d?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Pure Sandal Dhoop Cups", "12 cups", "₹225", "", "https://images.unsplash.com/photo-1533038590840-1cde6e668a91?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Pure Guggal Dhoop Cups", "12 cups", "₹180", "", "https://images.unsplash.com/photo-1582560469781-1f0bd6a0b3f4?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Guggal Dhoop Sticks", "50g", "₹135", "", "https://images.unsplash.com/photo-1556765114-b527c8a19f04?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Loban Dhoop Sticks", "50g", "₹90", "", "https://images.unsplash.com/photo-1548082716-e8a13c2b48c1?auto=format&fit=crop&w=600&q=80"),
-        ],
-      },
-      {
-        title: "Natural Raw Dhoop",
-        products: [
-          makeProduct("Kani Dhoop", "100g / 250g", "₹90 / ₹180", "", "https://images.unsplash.com/photo-1544376936-ade9e0c45753?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Khada Dhoop", "100g / 250g", "₹120 / ₹300", "", "https://images.unsplash.com/photo-1603400521630-9f2de124b33b?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Pure Loban (Sambrani Powder)", "50g / 100g / 250g", "₹90 / ₹180 / ₹450", "", "https://images.unsplash.com/photo-1556909172-54557c7e4fb7?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Pure Guggal", "50g / 100g / 250g", "₹90 / ₹180 / ₹450", "", "https://images.unsplash.com/photo-1574169208507-84376144848b?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Parsi Floaters", "50g / 100g / 250g", "₹120 / ₹240 / ₹600", "", "https://images.unsplash.com/photo-1615485290382-441e4d049cb5?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Bhimsen Kapoor", "50g / 100g / 250g", "₹150 / ₹300 / ₹750", "", "https://images.unsplash.com/photo-1583292650898-7d22cd27ca6f?auto=format&fit=crop&w=600&q=80"),
+          makeProduct("Special Chandan",   "50g", "₹75", "", imgSpecialChandan,   imgSpecialChandanHover),
+          makeProduct("Special Rose",      "50g", "₹75", "", imgSpecialRose,      imgSpecialRoseHover),
+          makeProduct("Peace",             "50g", "₹75", "", imgPeace,            imgPeaceHover),
+          makeProduct("Aroma",             "50g", "₹75", "", imgAroma,            imgAromaHover),
+          makeProduct("Rich Gold",         "50g", "₹75", "", imgRichGold,         imgRichGoldHover),
+          makeProduct("Divine Meditation", "50g", "₹75", "", imgDivineMeditation, imgDivineMeditationHover),
         ],
       },
     ],
   },
-  "premium-incense": {
-    sections: [
-      {
-        title: "Aromatic Series",
-        products: [
-          makeProduct("Golden Petal", "100g / 250g", "₹110 / ₹250", "", "https://images.unsplash.com/photo-1495078429430-b9049e87abd4?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Copper Magic", "100g / 250g", "₹110 / ₹250", "", "https://images.unsplash.com/photo-1574169208507-84376144848b?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Green Musk", "100g / 250g", "₹110 / ₹250", "", "https://images.unsplash.com/photo-1591955506264-3f5a6834570a?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Saffron Bliss", "100g / 250g", "₹110 / ₹250", "", "https://images.unsplash.com/photo-1617347454431-f49d7ff5c3b1?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Blue Diamond", "100g / 250g", "₹110 / ₹250", "", "https://images.unsplash.com/photo-1529778873920-4da4926a72c2?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Purple Pinch", "100g / 250g", "₹110 / ₹250", "", "https://images.unsplash.com/photo-1461344577544-4e5dc9487184?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Silver Touch", "100g / 250g", "₹110 / ₹250", "", "https://images.unsplash.com/photo-1578662996442-48f60103fc96?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Divine 3 in 1", "250g", "₹250", "", "https://images.unsplash.com/photo-1518640467707-6811f4a6ab73?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Pink Pearl", "100g / 250g", "₹110 / ₹250", "", "https://images.unsplash.com/photo-1490750967868-88df5691cc71?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Festival 5 in 1", "250g", "₹250", "", "https://images.unsplash.com/photo-1602928298849-e4b8b3bf9c12?auto=format&fit=crop&w=600&q=80"),
-        ],
-      },
-      {
-        title: "Natural Fruit Incense",
-        products: [
-          makeProduct("Pineapple", "100g", "₹110", "", "https://images.unsplash.com/photo-1550258987-190a2d41a8ba?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Strawberry", "100g", "₹110", "", "https://images.unsplash.com/photo-1464965911861-746a04b4bca6?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Peach", "100g", "₹110", "", "https://images.unsplash.com/photo-1553279768-865429fa0078?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Watermelon", "100g", "₹110", "", "https://images.unsplash.com/photo-1563114773-84221bd62daa?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Grapes", "100g", "₹110", "", "https://images.unsplash.com/photo-1537640538966-79f369143f8f?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Red Guava", "100g", "₹110", "", "https://images.unsplash.com/photo-1536511132770-e5058c7e8c46?auto=format&fit=crop&w=600&q=80"),
-        ],
-      },
-      {
-        title: "Ancient Incense Series",
-        products: [
-          makeProduct("Mysore Chandan", "50g / 250g", "₹95 / ₹300", "", "https://images.unsplash.com/photo-1600369672770-985fd30004eb?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Rajnigandha", "50g / 250g", "₹80 / ₹275", "", "https://images.unsplash.com/photo-1484593831335-c3d2468d2c26?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Pure Loban", "50g / 250g", "₹95 / ₹275", "", "https://images.unsplash.com/photo-1556909172-54557c7e4fb7?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Black Musk", "50g / 250g", "₹95 / ₹325", "", "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Royal King", "50g / 250g", "₹95 / ₹325", "", "https://images.unsplash.com/photo-1604480132736-44c188fe4d20?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Pure Guggul", "50g", "₹120", "", "https://images.unsplash.com/photo-1582560469781-1f0bd6a0b3f4?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Saffron", "50g / 250g", "₹110 / ₹525", "", "https://images.unsplash.com/photo-1617347454431-f49d7ff5c3b1?auto=format&fit=crop&w=600&q=80"),
-        ],
-      },
-      {
-        title: "Premium Masala Series",
-        products: [
-          makeProduct("Azzaro", "50g / 250g", "₹95 / ₹325", "", "https://images.unsplash.com/photo-1604480132736-44c188fe4d20?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Tirumala", "50g / 250g", "₹110 / ₹425", "", "https://images.unsplash.com/photo-1615485290382-441e4d049cb5?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Fruit Forest", "50g / 250g", "₹120 / ₹510", "", "https://images.unsplash.com/photo-1591955506264-3f5a6834570a?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Prayer", "50g / 250g", "₹120 / ₹510", "", "https://images.unsplash.com/photo-1609501676732-3e50cda59b64?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("White Sage", "50g / 250g", "₹120 / ₹510", "", "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Divine Meditation", "50g / 250g", "₹120 / ₹510", "", "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Nag Champa", "50g / 250g", "₹135 / ₹510", "", "https://images.unsplash.com/photo-1533038590840-1cde6e668a91?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Gold Sandal", "50g / ₹575", "₹135 / ₹575", "", "https://images.unsplash.com/photo-1600369672770-985fd30004eb?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Spanish Lavender", "50g / 250g", "₹135 / ₹650", "", "https://images.unsplash.com/photo-1528360983277-13d401cdc186?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Mechanize Gold", "50g / 250g", "₹150 / ₹650", "", "https://images.unsplash.com/photo-1574169208507-84376144848b?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Rich Gold", "50g / 250g", "₹150 / ₹650", "", "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=600&q=80"),
-        ],
-      },
-    ],
-  },
-  "perfumed-incense": {
-    sections: [
-      {
-        title: "Premume Incense Sticks (₹80/₹190)",
-        products: [
-          makeProduct("Rose", "100g / 250g", "₹80 / ₹190", "Timeless Floral Grace", "https://images.unsplash.com/photo-1559181567-c3190ca9959b?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Passion", "100g / 250g", "₹80 / ₹190", "Essence of Intensity", "https://images.unsplash.com/photo-1603400521630-9f2de124b33b?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Kasturi", "100g / 250g", "₹80 / ₹190", "", "https://images.unsplash.com/photo-1548082716-e8a13c2b48c1?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Attar Fantasia", "100g / 250g", "₹80 / ₹190", "The Magic of Attar", "https://images.unsplash.com/photo-1556765114-b527c8a19f04?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Deepnandan", "100g / 250g", "₹80 / ₹190", "", "https://images.unsplash.com/photo-1464982326199-86f32f81b211?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Firdous", "100g / 250g", "₹80 / ₹190", "", "https://images.unsplash.com/photo-1583292650898-7d22cd27ca6f?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Mogra", "100g / 250g", "₹80 / ₹190", "", "https://images.unsplash.com/photo-1484593831335-c3d2468d2c26?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Chandan", "100g / 250g", "₹80 / ₹190", "", "https://images.unsplash.com/photo-1599839619526-03bd12d6d962?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Sringar Gold", "100g / 250g", "₹80 / ₹190", "", "https://images.unsplash.com/photo-1617347454431-f49d7ff5c3b1?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Fancy Flower", "100g / 250g", "₹80 / ₹190", "", "https://images.unsplash.com/photo-1495078429430-b9049e87abd4?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Champa", "100g / 250g", "₹80 / ₹190", "", "https://images.unsplash.com/photo-1464965911861-746a04b4bca6?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("3 Fragrances", "100g / 250g", "₹80 / ₹190", "", "https://images.unsplash.com/photo-1602928298849-e4b8b3bf9c12?auto=format&fit=crop&w=600&q=80"),
-        ],
-      },
-      {
-        title: "Premume Incense Sticks (₹100/₹225)",
-        products: [
-          makeProduct("Violet", "100g / 250g", "₹100 / ₹225", "", "https://images.unsplash.com/photo-1529778873920-4da4926a72c2?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Panadi", "100g / 250g", "₹100 / ₹225", "", "https://images.unsplash.com/photo-1541364983171-a8ba01e95cfc?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Kesar Chandan", "100g / 250g", "₹100 / ₹225", "", "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("London Night", "100g / 250g", "₹100 / ₹225", "", "https://images.unsplash.com/photo-1444703686981-a3abbc4d4fe3?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Musk", "100g / 250g", "₹100 / ₹225", "", "https://images.unsplash.com/photo-1578662996442-48f60103fc96?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Tulip Garden", "100g / 250g", "₹100 / ₹225", "", "https://images.unsplash.com/photo-1462275646964-a0e3386b89fa?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Lavender", "100g / 250g", "₹100 / ₹225", "", "https://images.unsplash.com/photo-1528360983277-13d401cdc186?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Angel", "100g / 250g", "₹100 / ₹225", "", "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Pure Lilly", "100g / 250g", "₹100 / ₹225", "", "https://images.unsplash.com/photo-1490750967868-88df5691cc71?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Musk Melon", "100g / 250g", "₹100 / ₹225", "", "https://images.unsplash.com/photo-1553279768-865429fa0078?auto=format&fit=crop&w=600&q=80"),
-        ],
-      },
-      {
-        title: "Higher Range & Black Series",
-        products: [
-          makeProduct("Rajpal Special", "100g / 250g", "₹110 / ₹250", "", "https://images.unsplash.com/photo-1556909172-54557c7e4fb7?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Sandalum", "100g / 250g", "₹110 / ₹250", "", "https://images.unsplash.com/photo-1533038590840-1cde6e668a91?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Divine Meditation", "100g / 250g", "₹120 / ₹300", "", "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Kasturi Gold", "100g / 250g", "₹120 / ₹300", "", "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Mysore Chandan", "100g / 250g", "₹135 / ₹325", "", "https://images.unsplash.com/photo-1600369672770-985fd30004eb?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Signature", "100g / 250g", "₹135 / ₹325", "", "https://images.unsplash.com/photo-1604480132736-44c188fe4d20?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Black Musk", "100g / 250g", "₹150 / ₹375", "", "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Royal King", "100g / 250g", "₹150 / ₹375", "", "https://images.unsplash.com/photo-1615485290382-441e4d049cb5?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Red Hills", "100g / 250g", "₹50 / ₹120", "", "https://images.unsplash.com/photo-1542273917363-3b1817f69a2d?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Blue Hills", "100g / 250g", "₹50 / ₹120", "", "https://images.unsplash.com/photo-1444703686981-a3abbc4d4fe3?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("New Mogra", "100g / 250g", "₹50 / ₹120", "", "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("New Rose", "100g / 250g", "₹50 / ₹120", "", "https://images.unsplash.com/photo-1455659817273-f96807779a8a?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Rainbow Red", "250g", "₹150", "", "https://images.unsplash.com/photo-1461344577544-4e5dc9487184?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Rainbow Blue", "250g", "₹150", "", "https://images.unsplash.com/photo-1529778873920-4da4926a72c2?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Rainbow Green", "250g", "₹150", "", "https://images.unsplash.com/photo-1591955506264-3f5a6834570a?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Rainbow Violet", "250g", "₹150", "", "https://images.unsplash.com/photo-1550258987-190a2d41a8ba?auto=format&fit=crop&w=600&q=80"),
-        ],
-      },
-    ],
-  },
-  "long-sticks": {
-    sections: [
-      {
-        title: "Longsticks Collection",
-        products: [
-          makeProduct("Red Wood", "5 Sticks", "₹150", "", "https://images.unsplash.com/photo-1542273917363-3b1817f69a2d?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Blue Sapphire", "5 Sticks", "₹150", "", "https://images.unsplash.com/photo-1444703686981-a3abbc4d4fe3?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Mechanize Gold", "5 Sticks", "₹150", "", "https://images.unsplash.com/photo-1574169208507-84376144848b?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Bhumi Flora", "5 Sticks", "₹150", "", "https://images.unsplash.com/photo-1591955506264-3f5a6834570a?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Tirumala Flora", "10 Sticks", "₹150", "", "https://images.unsplash.com/photo-1615485290382-441e4d049cb5?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Herbal Leaf", "5 Sticks", "₹175", "", "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Tathastul", "5 Sticks", "₹175", "", "https://images.unsplash.com/photo-1609501676732-3e50cda59b64?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Gold Sandal (Traditional Flora)", "5 Sticks", "₹175", "", "https://images.unsplash.com/photo-1600369672770-985fd30004eb?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Kesar Kasturi", "1 Stick", "₹50", "", "https://images.unsplash.com/photo-1617347454431-f49d7ff5c3b1?auto=format&fit=crop&w=600&q=80"),
-        ],
-      },
-    ],
-  },
-  "aroma-fragrance": {
-    sections: [
-      {
-        title: "Fresh Aroma Organic Purity Pod",
-        products: [
-          makeProduct("Original", "60g", "₹199", "", "https://images.unsplash.com/photo-1602928298849-e4b8b3bf9c12?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Rose Pink", "60g", "₹199", "", "https://images.unsplash.com/photo-1559181567-c3190ca9959b?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Lavender", "60g", "₹199", "", "https://images.unsplash.com/photo-1528360983277-13d401cdc186?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Jasmine", "60g", "₹199", "", "https://images.unsplash.com/photo-1464965911861-746a04b4bca6?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Sandal", "60g", "₹199", "", "https://images.unsplash.com/photo-1533038590840-1cde6e668a91?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Lemongrass", "60g", "₹199", "", "https://images.unsplash.com/photo-1541364983171-a8ba01e95cfc?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Aromatic", "60g", "₹199", "", "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=600&q=80"),
-        ],
-      },
-      {
-        title: "Fresh Aroma Car Pod",
-        products: [
-          makeProduct("Solace", "12ml", "₹299", "", "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Elan", "12ml", "₹299", "", "https://images.unsplash.com/photo-1601490618684-f7b6fb14c09b?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Hush", "12ml", "₹299", "", "https://images.unsplash.com/photo-1578662996442-48f60103fc96?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Noir", "12ml", "₹299", "", "https://images.unsplash.com/photo-1444703686981-a3abbc4d4fe3?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Pulse", "12ml", "₹299", "", "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Drift", "12ml", "₹299", "", "https://images.unsplash.com/photo-1574169208507-84376144848b?auto=format&fit=crop&w=600&q=80"),
-        ],
-      },
-      {
-        title: "Perfume Roll-Ons",
-        products: [
-          makeProduct("Premium Majmua", "3ml / 8ml", "₹300 / ₹500", "", "https://images.unsplash.com/photo-1615485290382-441e4d049cb5?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Premium Oudh", "3ml / 8ml", "₹150 / ₹350", "", "https://images.unsplash.com/photo-1604480132736-44c188fe4d20?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Premium Khus", "3ml / 8ml", "₹150 / ₹350", "", "https://images.unsplash.com/photo-1616791151821-b3c8a3af8e12?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Premium Patchouli", "3ml / 8ml", "₹150 / ₹350", "", "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Premium Agarwood", "3ml / 8ml", "₹150 / ₹350", "", "https://images.unsplash.com/photo-1544376936-ade9e0c45753?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Premium Kasturi", "3ml / 8ml", "₹120 / ₹250", "", "https://images.unsplash.com/photo-1548082716-e8a13c2b48c1?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Premium White Oudh", "3ml / 8ml", "₹120 / ₹250", "", "https://images.unsplash.com/photo-1578662996442-48f60103fc96?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Premium Chandan", "3ml / 8ml", "₹120 / ₹250", "", "https://images.unsplash.com/photo-1599839619526-03bd12d6d962?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Premium Kesar", "3ml / 8ml", "₹120 / ₹250", "", "https://images.unsplash.com/photo-1617347454431-f49d7ff5c3b1?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Premium Rose", "3ml / 8ml", "₹120 / ₹250", "", "https://images.unsplash.com/photo-1490750967868-88df5691cc71?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Sacred Chandan", "3ml / 8ml", "₹750 / ₹1250", "", "https://images.unsplash.com/photo-1602928298849-e4b8b3bf9c12?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Sacred Oudh", "3ml / 8ml", "₹600 / ₹900", "", "https://images.unsplash.com/photo-1603905490932-09ba5f285a79?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Sacred Rose", "3ml / 8ml", "₹500 / ₹750", "", "https://images.unsplash.com/photo-1455659817273-f96807779a8a?auto=format&fit=crop&w=600&q=80"),
-        ],
-      },
-    ],
-  },
-  "pooja-deep": {
-    sections: [
-      {
-        title: "Pooja Deep Pure Cow Ghee Diyas",
-        products: [
-          makeProduct("Pooja Deep Ghee Diyas", "30 Diya", "₹120", "", "https://images.unsplash.com/photo-1609234656388-0ff363383899?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Pooja Deep Ghee Diyas", "60 Diya", "₹240", "", "https://images.unsplash.com/photo-1577083287854-b3e49bfc0f03?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Pooja Deep Ghee Diyas", "50 Diya", "₹350", "", "https://images.unsplash.com/photo-1609234656388-0ff363383899?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Pooja Deep Ghee Diyas", "100 Diya", "₹350", "", "https://images.unsplash.com/photo-1577083287854-b3e49bfc0f03?auto=format&fit=crop&w=600&q=80"),
-        ],
-      },
-      {
-        title: "Vanaspati Ghee Diyas",
-        products: [
-          makeProduct("Vanaspati Ghee Diya", "30 Diya", "₹90", "", "https://images.unsplash.com/photo-1609234656388-0ff363383899?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Vanaspati Ghee Diya", "60 Diya", "₹180", "", "https://images.unsplash.com/photo-1577083287854-b3e49bfc0f03?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Vanaspati Ghee Diya", "50 Diya", "₹250", "", "https://images.unsplash.com/photo-1609234656388-0ff363383899?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Vanaspati Ghee Diya", "100 Diya", "₹250", "", "https://images.unsplash.com/photo-1577083287854-b3e49bfc0f03?auto=format&fit=crop&w=600&q=80"),
-        ],
-      },
-      {
-        title: "Pooja Vati (Wicks)",
-        products: [
-          makeProduct("Pooja Cotton Vati", "Pack", "₹25", "", "https://images.unsplash.com/photo-1603400521630-9f2de124b33b?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Pooja Cotton Vati", "Pack", "₹15", "", "https://images.unsplash.com/photo-1609501676732-3e50cda59b64?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Pooja Phool Vati", "Pack", "₹25", "", "https://images.unsplash.com/photo-1577083287854-b3e49bfc0f03?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Pooja Phool Vati", "Pack", "₹50", "", "https://images.unsplash.com/photo-1609234656388-0ff363383899?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Pooja Phool Vati", "Pack", "₹75", "", "https://images.unsplash.com/photo-1603400521630-9f2de124b33b?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Pooja Phool Vati", "Pack", "₹150", "", "https://images.unsplash.com/photo-1609501676732-3e50cda59b64?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Pooja Samai Vati", "Pack", "₹25", "Long cotton wicks for Samai and Deepam", "https://images.unsplash.com/photo-1577083287854-b3e49bfc0f03?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Pooja Samai Vati", "Pack", "₹15", "", "https://images.unsplash.com/photo-1609234656388-0ff363383899?auto=format&fit=crop&w=600&q=80"),
-        ],
-      },
-    ],
-  },
-  "khadi-soaps": {
-    sections: [
-      {
-        title: "Premium Handmade Bathing Bar (125g)",
-        products: [
-          makeProduct("Aloe Vera", "125g", "₹100", "", "https://images.unsplash.com/photo-1585366119957-e9730b6d0f60?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Apple Cider Vinegar", "125g", "₹100", "", "https://images.unsplash.com/photo-1567016376408-0226e4d0c1ea?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Aqua Fresh", "125g", "₹100", "", "https://images.unsplash.com/photo-1571781926291-c477ebfd024b?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Avocado", "125g", "₹100", "", "https://images.unsplash.com/photo-1523049673857-eb18f1d7b578?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Basil Scrub", "125g", "₹100", "", "https://images.unsplash.com/photo-1591955506264-3f5a6834570a?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Blueberry", "125g", "₹100", "", "https://images.unsplash.com/photo-1514995669114-6081e934b693?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Chandan Haldi", "125g", "₹100", "", "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Charcoal", "125g", "₹100", "", "https://images.unsplash.com/photo-1556909172-54557c7e4fb7?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Coffee", "125g", "₹100", "", "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Goat Milk", "125g", "₹100", "", "https://images.unsplash.com/photo-1582562124811-c09040d0a901?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Jasmine", "125g", "₹100", "", "https://images.unsplash.com/photo-1484593831335-c3d2468d2c26?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Lavender", "125g", "₹100", "", "https://images.unsplash.com/photo-1528360983277-13d401cdc186?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Neem", "125g", "₹100", "", "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Rose", "125g", "₹100", "", "https://images.unsplash.com/photo-1559181567-c3190ca9959b?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Sandalwood", "125g", "₹100", "", "https://images.unsplash.com/photo-1600369672770-985fd30004eb?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Tea Tree", "125g", "₹100", "", "https://images.unsplash.com/photo-1541364983171-a8ba01e95cfc?auto=format&fit=crop&w=600&q=80"),
-        ],
-      },
-      {
-        title: "Luxurious Handmade Bathing Bar (125g)",
-        products: [
-          makeProduct("Activated Bamboo Charcoal", "125g", "₹120", "", "https://images.unsplash.com/photo-1556909172-54557c7e4fb7?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Almond Milk & Saffron", "125g", "₹120", "", "https://images.unsplash.com/photo-1617347454431-f49d7ff5c3b1?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Apricot Scrub", "125g", "₹120", "", "https://images.unsplash.com/photo-1553279768-865429fa0078?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Aqua Cool", "125g", "₹120", "", "https://images.unsplash.com/photo-1571781926291-c477ebfd024b?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Black Musk", "125g", "₹120", "", "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("British Rose", "125g", "₹120", "", "https://images.unsplash.com/photo-1455659817273-f96807779a8a?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Dead Sea", "125g", "₹120", "", "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Green Apple", "125g", "₹120", "", "https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Green Tea & Lemongrass", "125g", "₹120", "", "https://images.unsplash.com/photo-1527462591673-e8c1a7d0f1c4?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Haldi Chandan", "125g", "₹120", "", "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Mogra", "125g", "₹120", "", "https://images.unsplash.com/photo-1484593831335-c3d2468d2c26?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Orange Ginger", "125g", "₹120", "", "https://images.unsplash.com/photo-1547476537-12b54e42c2ec?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Oud Wood", "125g", "₹120", "", "https://images.unsplash.com/photo-1544376936-ade9e0c45753?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Royal Saffron", "125g", "₹120", "", "https://images.unsplash.com/photo-1617347454431-f49d7ff5c3b1?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Sandalwood Saffron", "125g", "₹120", "", "https://images.unsplash.com/photo-1599839619526-03bd12d6d962?auto=format&fit=crop&w=600&q=80"),
-          makeProduct("Shea Butter", "125g", "₹120", "", "https://images.unsplash.com/photo-1567016376408-0226e4d0c1ea?auto=format&fit=crop&w=600&q=80"),
-        ],
-      },
-    ],
-  },
+
 };
 
+
+// ── Categories ───────────────────────────────────────────────────────────────
+
 const categoryMeta = [
-  {
-    name: "Incense Sticks",
-    slug: "incense-sticks",
-    image:
-      "https://arthcart.com/cdn/shop/files/Artboard20.jpg?v=1689790295",
-  },
-  {
-    name: "Dhoop Sticks",
-    slug: "dhoop-sticks",
-    image:
-      "https://www.swahaproducts.com/cdn/shop/products/Utsav1_1800x1800.jpg?v=1744938142",
-  },
-  {
-    name: "Premium Incense",
-    slug: "premium-incense",
-    image:
-      "https://m.media-amazon.com/images/I/81n-HyLqapL._AC_UF350,350_QL80_.jpg",
-  },
-  {
-    name: "Perfumed Incense",
-    slug: "perfumed-incense",
-    image:
-      "https://www.kambayaromatics.com/img/agarbatti-perfume-manufacturer.jpg",
-  },
-  {
-    name: "Aroma & Fragrance",
-    slug: "aroma-fragrance",
-    image:
-      "https://m.media-amazon.com/images/I/71OQ73TMR-L._AC_UF894,1000_QL80_.jpg",
-  },
-  {
-    name: "Pooja Deep",
-    slug: "pooja-deep",
-    image:
-      "https://rukminim2.flixcart.com/image/480/480/xif0q/diya/5/j/x/1-diya-685-aloof-2-original-imagt2rzjv88ydgs.jpeg?q=90",
-  },
-  {
-    name: "Khadi Natural Soaps",
-    slug: "khadi-soaps",
-    image:
-      "https://images.meesho.com/images/products/72937940/vcewr_512.webp?width=512",
-  },
-  {
-    name: "Long Sticks",
-    slug: "long-sticks",
-    image:
-      "https://www.soulflower.in/cdn/shop/files/Sandalwood_111324be-1350-4cb3-8805-c4f1631b1285_large.jpg?v=1759904845",
-  },
+  { name: "Incense Sticks",      slug: "incense-sticks",   image: imgCategoryIncenseSticks   },
+  { name: "Dhoop Sticks",        slug: "dhoop-sticks",     image: imgCategoryDhoopSticks     },
+  { name: "Premium Incense",     slug: "premium-incense",  image: imgCategoryPremiumIncense  },
+  { name: "Perfumed Incense",    slug: "perfumed-incense", image: imgCategoryPerfumedIncense },
+  { name: "Aroma & Fragrance",   slug: "aroma-fragrance",  image: imgCategoryAromaFragrance  },
+  { name: "Pooja Deep",          slug: "pooja-deep",       image: imgCategoryPoojaDeep       },
+  { name: "Khadi Natural Soaps", slug: "khadi-soaps",      image: imgCategoryKhadiSoaps      },
+  { name: "Long Sticks",         slug: "long-sticks",      image: imgCategoryLongSticks      },
 ];
 
-export const categories = categoryMeta.map((item) => ({
-  ...item,
-  subcategories: (productCatalog[item.slug]?.sections || []).map((section) => section.title),
-}));
+export const categories = categoryMeta.map(function (item) {
+  return Object.assign({}, item, {
+    subcategories: (
+      productCatalog[item.slug] && productCatalog[item.slug].sections || []
+    ).map(function (s) { return s.title; }),
+  });
+});
+
+
+// ── Testimonials & FAQs ──────────────────────────────────────────────────────
 
 export const testimonials = [
-  { name: "Export Buyer, UAE", quote: "A premium fragrance profile with excellent consistency." },
-  { name: "Retail Partner, Delhi", quote: "Customers love the elegant packaging and rich aroma." },
-  { name: "Wellness Studio, Mumbai", quote: "Perfect for meditation and luxury ambience curation." },
+  { name: "Export Buyer, UAE",       quote: "A premium fragrance profile with excellent consistency." },
+  { name: "Retail Partner, Delhi",   quote: "Customers love the elegant packaging and rich aroma."   },
+  { name: "Wellness Studio, Mumbai", quote: "Perfect for meditation and luxury ambience curation."    },
 ];
 
 export const faqs = [
-  { q: "How is product quality ensured?", a: "Each batch follows strict fragrance and burn-quality standards." },
-  { q: "Do you offer shipping support?", a: "Yes, domestic and export dispatch support is available." },
-  { q: "Can I get fragrance details?", a: "Detailed fragrance notes and usage guidance are provided per product line." },
-  { q: "Do you accept custom orders?", a: "Yes, custom fragrance and packaging consultations are supported." },
-  { q: "Are bulk orders available?", a: "Yes, we handle wholesale and distributor-grade quantities." },
-  { q: "Do you export internationally?", a: "Yes, export-ready documentation and product formats are available." },
+  { q: "How is product quality ensured?", a: "Each batch follows strict fragrance and burn-quality standards."            },
+  { q: "Do you offer shipping support?",  a: "Yes, domestic and export dispatch support is available."                   },
+  { q: "Can I get fragrance details?",    a: "Detailed fragrance notes and usage guidance are provided per product line." },
+  { q: "Do you accept custom orders?",    a: "Yes, custom fragrance and packaging consultations are supported."          },
+  { q: "Are bulk orders available?",      a: "Yes, we handle wholesale and distributor-grade quantities."                 },
+  { q: "Do you export internationally?",  a: "Yes, export-ready documentation and product formats are available."        },
 ];

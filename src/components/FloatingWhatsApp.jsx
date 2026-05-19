@@ -7,17 +7,25 @@ import {
   Search,
   ShoppingBag,
   MessageCircle,
+  ShieldCheck,
 } from "lucide-react";
 
 import { productCatalog } from "../data/siteData";
 
 const FloatingAI = () => {
   const [open, setOpen] = useState(false);
+
   const [message, setMessage] = useState("");
+
   const [messages, setMessages] = useState([
     {
       type: "ai",
-      text: "✨ Welcome to RAJPAL PRODUCTS\nHow can I help you today?",
+      text:
+        "✨ Welcome to RAJPAL PRODUCTS\n\n" +
+        "🛡️ Verified Brand Since 1981\n\n" +
+        "Please beware of fake sellers.\n" +
+        "We only accept orders through our official WhatsApp number.\n\n" +
+        "How can I help you today?",
     },
   ]);
 
@@ -25,7 +33,7 @@ const FloatingAI = () => {
 
   const messagesEndRef = useRef(null);
 
-  // ✅ Your WhatsApp Number
+  // ✅ Official WhatsApp Number
   const whatsappNumber = "919930670044";
 
   useEffect(() => {
@@ -61,46 +69,97 @@ const FloatingAI = () => {
     );
   };
 
-  // 🤖 AI Reply
+  // 🤖 AI Reply Generator
   const generateReply = (userMessage) => {
     const lower = userMessage.toLowerCase();
 
+    // 🔍 Product Search
     const foundProducts = searchProducts(lower);
 
     if (foundProducts.length > 0) {
-      return `🛍️ I found ${foundProducts.length} matching products:\n\n${foundProducts
-        .slice(0, 4)
-        .map(
-          (p) =>
-            `• ${p.name}\n₹ ${p.price}\n${p.weight}`
-        )
-        .join(
-          "\n\n"
-        )}\n\n📞 Order on WhatsApp`;
+      return {
+        type: "products",
+        items: foundProducts.slice(0, 6),
+      };
     }
 
+    // 👋 Greeting
     if (
       lower.includes("hi") ||
       lower.includes("hello") ||
       lower.includes("hey")
     ) {
-      return `🙏 Welcome to RAJPAL PRODUCTS.\n\nWe offer premium agarbatti, dhoop sticks, pooja items, aroma products & soaps.\n\n📞 Order on WhatsApp`;
+      return `🙏 Welcome to RAJPAL PRODUCTS.
+
+✨ Premium Agarbatti, Dhoop, Pooja Items & Spiritual Products.
+
+🛡️ Trusted Brand Since 1981
+
+📞 Order directly on our official WhatsApp.`;
     }
 
+    // 💰 Price
     if (lower.includes("price")) {
-      return `💰 Product prices depend on fragrance and pack size.\n\nTell me product name for exact price.\n\n📞 Order on WhatsApp`;
+      return `💰 Product prices depend on fragrance and pack size.
+
+Please tell me the product name for exact pricing.
+
+📞 Contact on WhatsApp for quick response.`;
     }
 
+    // 📦 Wholesale
     if (
       lower.includes("bulk") ||
-      lower.includes("wholesale")
+      lower.includes("wholesale") ||
+      lower.includes("distributor")
     ) {
-      return `📦 Wholesale & distributor orders available.\n\n📞 Contact on WhatsApp`;
+      return `📦 Wholesale & distributor orders available.
+
+✨ Best pricing for bulk quantity.
+
+📞 Contact us directly on WhatsApp.`;
     }
 
-    return `✨ Thank you for contacting RAJPAL PRODUCTS.\n\n📞 Please contact us on WhatsApp for order & inquiry.`;
+    // 🛡️ Fake / Fraud Protection
+    if (
+      lower.includes("fake") ||
+      lower.includes("fraud") ||
+      lower.includes("original") ||
+      lower.includes("real")
+    ) {
+      return `🛡️ Beware of fake sellers & duplicate products.
+
+✅ RAJPAL PRODUCTS accepts orders only through our official WhatsApp number.
+
+📞 Official WhatsApp:
++91 9930670044
+
+✨ Trusted Since 1981`;
+    }
+
+    // 🚚 Delivery
+    if (
+      lower.includes("delivery") ||
+      lower.includes("shipping")
+    ) {
+      return `🚚 PAN India delivery available.
+
+📦 Safe packaging & fast dispatch.
+
+📞 Contact us for delivery details.`;
+    }
+
+    // Default Reply
+    return `✨ Thank you for contacting RAJPAL PRODUCTS.
+
+🛡️ Please beware of fake sellers and duplicate products.
+
+✅ We only accept orders through our official WhatsApp number.
+
+📞 Contact us directly for genuine products & wholesale inquiries.`;
   };
 
+  // 📩 Send Message
   const sendMessage = () => {
     if (!message.trim()) return;
 
@@ -114,13 +173,22 @@ const FloatingAI = () => {
     const currentMessage = message;
 
     setMessage("");
+
     setTyping(true);
 
     setTimeout(() => {
-      const aiReply = {
-        type: "ai",
-        text: generateReply(currentMessage),
-      };
+      const response = generateReply(currentMessage);
+
+      const aiReply =
+        typeof response === "string"
+          ? {
+              type: "ai",
+              text: response,
+            }
+          : {
+              type: "products",
+              items: response.items,
+            };
 
       setMessages((prev) => [...prev, aiReply]);
 
@@ -130,7 +198,7 @@ const FloatingAI = () => {
 
   return (
     <>
-      {/* Floating AI Button */}
+      {/* Floating Button */}
       <div className="fixed bottom-5 right-5 z-50">
         <button
           onClick={() => setOpen(!open)}
@@ -142,52 +210,64 @@ const FloatingAI = () => {
             AI Assistant
           </span>
 
+          {/* Online Dot */}
           <span className="absolute -top-1 -right-1 h-3 w-3 rounded-full bg-green-400 animate-ping"></span>
         </button>
       </div>
 
       {/* Chat Box */}
       {open && (
-        <div className="fixed bottom-24 right-5 z-50 flex h-[430px] w-[320px] flex-col overflow-hidden rounded-3xl border border-white/10 bg-[#111111] shadow-2xl backdrop-blur-xl">
+        <div className="fixed bottom-24 right-5 z-50 flex h-[460px] w-[330px] flex-col overflow-hidden rounded-3xl border border-white/10 bg-[#111111] shadow-2xl backdrop-blur-xl">
 
           {/* Header */}
-          <div className="flex items-center justify-between bg-gradient-to-r from-yellow-500 to-orange-500 px-4 py-3 text-white">
-            <div className="flex items-center gap-2">
-              <Sparkles size={18} />
+          <div className="bg-gradient-to-r from-yellow-500 to-orange-500 px-4 py-3 text-white">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <Sparkles size={18} />
 
-              <div>
-                <h3 className="text-sm font-semibold">
-                  Rajpal AI
-                </h3>
+                <div>
+                  <h3 className="text-sm font-semibold">
+                    Rajpal AI
+                  </h3>
 
-                <p className="text-[11px] opacity-90">
-                  Online Now
-                </p>
+                  <p className="text-[11px] opacity-90">
+                    Online Now
+                  </p>
+                </div>
               </div>
+
+              <button onClick={() => setOpen(false)}>
+                <X size={18} />
+              </button>
             </div>
 
-            <button onClick={() => setOpen(false)}>
-              <X size={18} />
-            </button>
+            {/* Trust Badge */}
+            <div className="mt-2 flex items-center gap-1 text-[10px] text-green-100">
+              <ShieldCheck size={12} />
+              Verified Business Since 1981
+            </div>
           </div>
 
           {/* Messages */}
           <div className="flex-1 space-y-3 overflow-y-auto bg-[#181818] p-3">
+
             {messages.map((msg, index) => (
               <div key={index}>
-                <div
-                  className={`max-w-[85%] rounded-2xl px-3 py-2 text-sm leading-relaxed ${
-                    msg.type === "user"
-                      ? "ml-auto bg-yellow-500 text-black"
-                      : "bg-[#2a2a2a] text-white"
-                  }`}
-                >
-                  <pre className="whitespace-pre-wrap font-sans">
-                    {msg.text}
-                  </pre>
 
-                  {/* ✅ WhatsApp Button inside AI reply */}
-                  {msg.type === "ai" && (
+                {/* USER MESSAGE */}
+                {msg.type === "user" && (
+                  <div className="ml-auto max-w-[85%] rounded-2xl bg-yellow-500 px-3 py-2 text-sm leading-relaxed text-black">
+                    {msg.text}
+                  </div>
+                )}
+
+                {/* AI TEXT */}
+                {msg.type === "ai" && (
+                  <div className="max-w-[85%] rounded-2xl bg-[#2a2a2a] px-3 py-2 text-sm leading-relaxed text-white">
+                    <pre className="whitespace-pre-wrap font-sans">
+                      {msg.text}
+                    </pre>
+
                     <button
                       onClick={() =>
                         openWhatsApp(
@@ -199,8 +279,57 @@ const FloatingAI = () => {
                       <MessageCircle size={14} />
                       Chat on WhatsApp
                     </button>
-                  )}
-                </div>
+                  </div>
+                )}
+
+                {/* PRODUCT CARDS */}
+                {msg.type === "products" && (
+                  <div className="grid grid-cols-1 gap-3">
+
+                    {msg.items.map((product, i) => (
+                      <div
+                        key={i}
+                        className="overflow-hidden rounded-2xl bg-[#222]"
+                      >
+
+                        {/* Product Image */}
+                        <img
+                          src={product.image}
+                          alt={product.name}
+                          className="h-40 w-full object-cover"
+                        />
+
+                        {/* Product Info */}
+                        <div className="p-3">
+
+                          <h4 className="font-medium text-white">
+                            {product.name}
+                          </h4>
+
+                          <p className="mt-1 text-sm text-gray-300">
+                            {product.weight}
+                          </p>
+
+                          <p className="mt-2 text-lg font-semibold text-yellow-400">
+                            ₹ {product.price}
+                          </p>
+
+                          {/* WhatsApp Button */}
+                          <button
+                            onClick={() =>
+                              openWhatsApp(
+                                `Hello, I want to order ${product.name}`
+                              )
+                            }
+                            className="mt-3 w-full rounded-full bg-green-500 px-4 py-2 text-sm font-medium text-white transition hover:scale-[1.02]"
+                          >
+                            Order on WhatsApp
+                          </button>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
               </div>
             ))}
 
@@ -209,9 +338,11 @@ const FloatingAI = () => {
               <div className="w-fit rounded-2xl bg-[#2a2a2a] px-4 py-2 text-sm text-white">
                 <div className="flex gap-1">
                   <span className="animate-bounce">•</span>
+
                   <span className="animate-bounce delay-100">
                     •
                   </span>
+
                   <span className="animate-bounce delay-200">
                     •
                   </span>
@@ -224,6 +355,7 @@ const FloatingAI = () => {
 
           {/* Quick Buttons */}
           <div className="flex gap-2 overflow-x-auto border-t border-white/10 bg-[#151515] px-3 py-2">
+
             <button
               onClick={() => setMessage("Show incense sticks")}
               className="flex items-center gap-1 rounded-full bg-[#252525] px-3 py-1 text-xs text-white hover:bg-[#333]"
@@ -246,10 +378,18 @@ const FloatingAI = () => {
             >
               Wholesale
             </button>
+
+            <button
+              onClick={() => setMessage("Is this original product?")}
+              className="rounded-full bg-[#252525] px-3 py-1 text-xs text-white hover:bg-[#333]"
+            >
+              Genuine
+            </button>
           </div>
 
           {/* Input */}
           <div className="flex items-center gap-2 border-t border-white/10 bg-[#111111] p-3">
+
             <input
               type="text"
               placeholder="Ask products..."

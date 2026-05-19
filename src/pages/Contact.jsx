@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import { motion } from "framer-motion";
 import {
   MessageCircle,
@@ -5,9 +8,15 @@ import {
   Mail,
   Phone,
   Clock,
+  ChevronDown,
 } from "lucide-react";
 
 const ContactForm = () => {
+  const [openSubject, setOpenSubject] = useState(false);
+  const [selectedSubject, setSelectedSubject] = useState("");
+  const whatsappNumber = "919930670044";
+  const whatsappDisplay = "+91 9930670044";
+
   return (
     <>
       {/* GOOGLE FONTS */}
@@ -37,7 +46,7 @@ const ContactForm = () => {
         <div className="absolute -left-20 top-0 h-72 w-72 rounded-full bg-[#7a1020]/10 blur-3xl" />
         <div className="absolute bottom-0 right-0 h-72 w-72 rounded-full bg-[#7a1020]/10 blur-3xl" />
 
-        {/* MANDALA BACKGROUND */}
+        {/* PATTERN */}
         <div
           className="
             absolute inset-0 opacity-[0.04]
@@ -95,7 +104,7 @@ const ContactForm = () => {
 
           <p className="mt-5 max-w-2xl text-[16px] leading-8 text-[#7b4d4d]">
             We’re here to assist you with premium incense products,
-            business inquiries, wholesale orders, and customer support.
+            wholesale orders, and customer support.
           </p>
 
           <div className="mt-6 h-[3px] w-40 rounded-full bg-gradient-to-r from-[#7a1020] via-[#a01f34] to-transparent" />
@@ -119,7 +128,7 @@ const ContactForm = () => {
             "
           >
 
-            {/* FORM TITLE */}
+            {/* TITLE */}
             <div className="mb-7">
 
               <h3
@@ -137,9 +146,10 @@ const ContactForm = () => {
               </p>
             </div>
 
-            {/* INPUT GRID */}
+            {/* INPUTS */}
             <div className="grid gap-5 md:grid-cols-2">
 
+              {/* NAME */}
               <input
                 type="text"
                 placeholder="Full Name"
@@ -156,6 +166,7 @@ const ContactForm = () => {
                 "
               />
 
+              {/* EMAIL */}
               <input
                 type="email"
                 placeholder="Email Address"
@@ -172,6 +183,7 @@ const ContactForm = () => {
                 "
               />
 
+              {/* PHONE */}
               <input
                 type="text"
                 placeholder="Phone Number"
@@ -188,9 +200,10 @@ const ContactForm = () => {
                 "
               />
 
+              {/* COMPANY */}
               <input
                 type="text"
-                placeholder="Subject"
+                placeholder="Company Name"
                 className="
                   rounded-2xl
                   border border-[#7a1020]/15
@@ -205,7 +218,91 @@ const ContactForm = () => {
               />
             </div>
 
-            {/* TEXTAREA */}
+            {/* SUBJECT DROPDOWN */}
+            <div className="relative mt-5">
+
+              {/* BUTTON */}
+              <button
+                type="button"
+                onClick={() => setOpenSubject(!openSubject)}
+                className="
+                  flex w-full items-center justify-between
+                  rounded-2xl
+                  border border-[#7a1020]/15
+                  bg-white
+                  px-5 py-4
+                  text-sm
+                  transition-all duration-300
+                  hover:border-[#7a1020]
+                "
+              >
+
+                <span
+                  className={`font-medium ${
+                    selectedSubject
+                      ? "text-[#3a0d0d]"
+                      : "text-[#7a1020]/50"
+                  }`}
+                >
+                  {selectedSubject || "Select Subject"}
+                </span>
+
+                <ChevronDown
+                  size={18}
+                  className={`transition duration-300 ${
+                    openSubject ? "rotate-180" : ""
+                  }`}
+                />
+              </button>
+
+              {/* OPTIONS */}
+              {openSubject && (
+                <div
+                  className="
+                    absolute left-0 top-full z-50 mt-3
+                    w-full overflow-hidden
+                    rounded-2xl
+                    border border-[#7a1020]/10
+                    bg-white
+                    shadow-[0_20px_40px_rgba(122,16,32,0.12)]
+                  "
+                >
+
+                  {[
+                    "Product Inquiry",
+                    "Bulk Order",
+                    "Dealership Request",
+                    "General Support",
+                  ].map((item, i) => (
+
+                    <button
+                      key={i}
+                      type="button"
+                      onClick={() => {
+                        setSelectedSubject(item);
+                        setOpenSubject(false);
+                      }}
+                      className="
+                        block w-full
+                        border-b border-[#7a1020]/5
+                        px-5 py-4
+                        text-left text-sm
+                        text-[#3a0d0d]
+                        transition-all duration-300
+                        hover:bg-gradient-to-r
+                        hover:from-[#7a1020]
+                        hover:to-[#a01f34]
+                        hover:text-white
+                      "
+                    >
+                      {item}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {/* MESSAGE */}
             <textarea
               rows={6}
               placeholder="Write Your Message..."
@@ -226,7 +323,7 @@ const ContactForm = () => {
             {/* BUTTONS */}
             <div className="mt-7 flex flex-wrap gap-4">
 
-              {/* SEND BUTTON */}
+              {/* SEND */}
               <motion.button
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.95 }}
@@ -246,8 +343,6 @@ const ContactForm = () => {
                   shadow-[0_12px_30px_rgba(122,16,32,0.25)]
                 "
               >
-                <span className="absolute inset-0 translate-y-full bg-gradient-to-r from-[#a32739] to-[#7a1020] transition-transform duration-500 group-hover:translate-y-0" />
-
                 <span className="relative z-10">
                   Send Inquiry
                 </span>
@@ -255,7 +350,7 @@ const ContactForm = () => {
 
               {/* WHATSAPP */}
               <motion.a
-                href="https://wa.me/919876543210"
+                href={`https://wa.me/${whatsappNumber}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.03 }}
@@ -288,7 +383,6 @@ const ContactForm = () => {
             className="space-y-5"
           >
 
-            {/* INFO CARDS */}
             {[
               {
                 icon: <MapPin size={20} />,
@@ -303,7 +397,7 @@ const ContactForm = () => {
               {
                 icon: <Phone size={20} />,
                 title: "Phone",
-                value: "+91 99999 99999",
+                value: whatsappDisplay,
               },
               {
                 icon: <Clock size={20} />,
@@ -315,7 +409,6 @@ const ContactForm = () => {
                 key={i}
                 whileHover={{ y: -4 }}
                 className="
-                  group
                   flex items-start gap-4
                   rounded-[26px]
                   border border-[#7a1020]/10
@@ -323,8 +416,6 @@ const ContactForm = () => {
                   p-5
                   shadow-[0_10px_30px_rgba(122,16,32,0.08)]
                   backdrop-blur-xl
-                  transition-all duration-300
-                  hover:border-[#7a1020]/30
                 "
               >
 
@@ -338,7 +429,6 @@ const ContactForm = () => {
                     from-[#7a1020]
                     to-[#5c0d18]
                     text-white
-                    shadow-lg
                   "
                 >
                   {item.icon}
@@ -376,26 +466,13 @@ const ContactForm = () => {
             <div className="overflow-hidden rounded-[30px] border border-[#7a1020]/15 shadow-[0_10px_30px_rgba(122,16,32,0.12)]">
               <iframe
                 title="Google Map"
-                src="https://www.google.com/maps?q=India&output=embed"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3771.787823736182!2d72.8520115!3d19.029069!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7cf9822821f45%3A0xe08971914c2d5d7f!2sRajpal%20Products!5e0!3m2!1sen!2sin!4v1778844132607!5m2!1sen!2sin"
                 className="h-[300px] w-full"
                 loading="lazy"
               />
             </div>
           </motion.div>
         </div>
-
-        {/* BOTTOM LINE */}
-        <div
-          className="
-            absolute bottom-0 left-0 right-0
-            h-[2px]
-            bg-gradient-to-r
-            from-transparent
-            via-[#7a1020]
-            to-transparent
-            opacity-40
-          "
-        />
       </section>
     </>
   );

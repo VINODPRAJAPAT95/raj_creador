@@ -245,56 +245,38 @@ const About = () => {
               </span>
             </h1>
 
-            <p
-              className="
-                mt-5
-                max-w-2xl
-                mx-auto
-                text-center
-                text-[17px]
-                leading-8
-                text-[#7b5a35]
-              "
-              style={{
-                fontFamily: "'Inter', sans-serif",
-              }}
-            >
-              Spreading fragrance, tradition and spirituality since 1981
-            </p>
-
           </div>
 
-          {/* Counter */}
+          {/* Center Counter */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
-            className="flex items-center gap-6"
+            className="flex justify-center mt-12"
           >
-            <div
-              className="
-                text-5xl lg:text-6xl
-                font-bold
-                tracking-[-2px]
-                bg-gradient-to-r
-                from-[#5a0b16]
-                via-[#8f1730]
-                to-[#5a0b16]
-                bg-clip-text
-                text-transparent
-              "
-              style={{
-                fontFamily: "'Playfair Display', serif",
-              }}
-            >
-              {count.toLocaleString()}+
-            </div>
+            <div className="text-center">
 
-            <div className="w-px h-14 bg-[#7a1022]/20" />
+              <div
+                className="
+                  text-6xl lg:text-7xl
+                  font-bold
+                  tracking-[-2px]
+                  bg-gradient-to-r
+                  from-[#5a0b16]
+                  via-[#8f1730]
+                  to-[#5a0b16]
+                  bg-clip-text
+                  text-transparent
+                "
+                style={{
+                  fontFamily: "'Playfair Display', serif",
+                }}
+              >
+                {count.toLocaleString()}+
+              </div>
 
-            <div>
               <p
-                className="text-lg text-[#4a0d18] font-medium"
+                className="mt-3 text-xl text-[#4a0d18] font-semibold"
                 style={{
                   fontFamily: "'Inter', sans-serif",
                 }}
@@ -303,13 +285,14 @@ const About = () => {
               </p>
 
               <p
-                className="text-sm text-[#8f1730] mt-1"
+                className="text-sm text-[#8f1730] mt-1 tracking-[0.15em]"
                 style={{
                   fontFamily: "'Inter', sans-serif",
                 }}
               >
                 Across India & Global Markets
               </p>
+
             </div>
           </motion.div>
 
@@ -389,8 +372,8 @@ const About = () => {
 
                 {[
                   ["43+", "Years Legacy"],
-                  ["200+", "Products"],
-                  ["50+", "Countries"],
+                  ["300+", "Products"],
+                  ["50+", "Retail Partners"],
                 ].map(([num, label], i) => (
                   <div key={i}>
                     <div

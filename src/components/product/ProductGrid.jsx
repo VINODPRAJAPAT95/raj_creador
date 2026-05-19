@@ -1,49 +1,34 @@
-// ProductGrid.jsx
-
 import { useState } from "react";
 import { ChevronRight } from "lucide-react";
 import ProductCard from "./ProductCard";
 
-const ProductGrid = ({
-  products,
-  title = "Our Premium Collection",
-  subtitle = "Discover handcrafted fragrances and divine essentials made with purity and tradition.",
-}) => {
+const ProductGrid = ({ products }) => {
   const [visibleCount, setVisibleCount] = useState(4);
 
   const visibleProducts = products.slice(0, visibleCount);
+  const remaining = products.length - visibleCount;
 
   const handleViewMore = () => {
     setVisibleCount((prev) => prev + 4);
   };
 
   return (
-    <section className="relative py-16 lg:py-20">
-      
+    <section className="relative py-10">
+
       {/* Background */}
       <div className="absolute inset-0 -z-10 bg-gradient-to-b from-white via-[#fffdf8] to-white" />
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        
-        {/* Header */}
-        <div className="mx-auto mb-14 max-w-3xl text-center">
-          
-          <span className="inline-block rounded-full border border-gold/20 bg-gold/10 px-4 py-1 text-xs font-semibold uppercase tracking-[0.25em] text-gold">
-            Rajpal Products
-          </span>
 
-          <h2 className="mt-5 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl lg:text-5xl">
-            {title}
-          </h2>
+        {/*
+          Responsive grid:
+            Mobile  : 2 cols
+            Tablet  : 3 cols  (sm 640+)
+            Desktop : 4 cols  (lg 1024+)
+            XL      : 5 cols  (xl 1280+)
+        */}
+        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-4 lg:gap-5 xl:grid-cols-5">
 
-          <p className="mt-5 text-base leading-relaxed text-gray-500 sm:text-lg">
-            {subtitle}
-          </p>
-        </div>
-
-        {/* Product Grid */}
-        <div className="grid grid-cols-1 gap-7 sm:grid-cols-2 lg:grid-cols-5">
-          
           {/* Products */}
           {visibleProducts.map((product, index) => (
             <ProductCard
@@ -52,40 +37,29 @@ const ProductGrid = ({
             />
           ))}
 
-          {/* View More Image Card */}
+          {/* View More Card */}
           {visibleCount < products.length && (
             <button
               onClick={handleViewMore}
-              className="group relative overflow-hidden rounded-3xl bg-black"
+              className="group flex flex-col items-center justify-center rounded-2xl border-2 border-dashed border-stone-200 bg-gradient-to-br from-stone-50 to-[#fff8f8] transition-all duration-300 hover:-translate-y-1 hover:border-[#7a1020]/40 hover:shadow-lg"
             >
-              
-              {/* Background Image */}
-              <img
-                src="/images/view-more.jpg"
-                alt="View More"
-                className="h-full w-full object-cover transition duration-500 group-hover:scale-110 group-hover:opacity-80"
-              />
-
-              {/* Overlay */}
-              <div className="absolute inset-0 bg-black/40" />
-
-              {/* Content */}
-              <div className="absolute inset-0 flex flex-col items-center justify-center p-4 text-center">
-                
-                <div className="flex h-14 w-14 items-center justify-center rounded-full bg-white text-black transition duration-300 group-hover:scale-110">
-                  <ChevronRight className="h-6 w-6" />
-                </div>
-
-                <h3 className="mt-4 text-lg font-semibold text-white">
-                  View More
-                </h3>
-
-                <p className="mt-2 text-sm text-white/80">
-                  Explore More Products
-                </p>
+              {/* Icon */}
+              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#7a1020] text-white shadow-md transition-all duration-300 group-hover:scale-110 group-hover:shadow-[0_6px_24px_rgba(122,16,32,0.32)]">
+                <ChevronRight className="h-5 w-5" />
               </div>
+
+              {/* Title */}
+              <h3 className="mt-3 font-serif text-base font-semibold tracking-wide text-[#7a1020]">
+                View More
+              </h3>
+
+              {/* Remaining count */}
+              <p className="mt-1 text-xs text-stone-400">
+                {remaining} more product{remaining !== 1 ? "s" : ""}
+              </p>
             </button>
           )}
+
         </div>
       </div>
     </section>

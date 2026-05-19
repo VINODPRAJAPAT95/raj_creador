@@ -8,7 +8,7 @@ import CategoryCard from "../components/CategoryCard";
 
 import { categories, faqs, testimonials } from "../data/siteData";
 
-import rajpalsince from "../assets/images/rajpalsince.png";
+// import rajpalsince from "../assets/imagesince/rajpalsince.png";
 
 const Home = () => {
 
@@ -53,7 +53,7 @@ const Home = () => {
             Featured Categories
           </p>
 
-          <h2 className="section-heading text-[42px] md:text-[64px]">
+          <h2 className="section-heading text-[42px] md:text-[55px]">
             Premium Divine Collections
           </h2>
 
@@ -80,7 +80,7 @@ const Home = () => {
         </div>
 
         {/* CATEGORY GRID */}
-        <div className="relative mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+        <div className="relative mt-10 grid gap-6 md:grid-cols-4 xl:grid-cols-4">
           {categories.map((category) => (
             <CategoryCard key={category.slug} category={category} />
           ))}

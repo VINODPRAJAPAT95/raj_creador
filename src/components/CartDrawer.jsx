@@ -13,7 +13,7 @@ import {
 import { motion, AnimatePresence } from "framer-motion";
 import { useCart } from "../hooks/useCart";
 
-const whatsappNumber = "919999999999";
+const whatsappNumber = "919930670044";
 const instagramUrl = "https://www.instagram.com/rajpalproducts";
 
 const CartDrawer = () => {
