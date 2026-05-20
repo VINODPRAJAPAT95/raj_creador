@@ -1,3 +1,4 @@
+import { ShoppingBag } from "lucide-react";
 import { useCart } from "../../hooks/useCart";
 
 // WhatsApp Icon
@@ -19,69 +20,74 @@ const ProductCard = ({ product }) => {
   const whatsappMessage = `Hello RAJPAL PRODUCTS, I want to order ${product.name}`;
 
   return (
-    <article className="group overflow-hidden rounded-2xl border border-silver/80 bg-white/85 transition hover:-translate-y-1 hover:shadow-luxury">
+    <article className="group overflow-hidden rounded-2xl border border-silver/80 bg-white/85 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_60px_rgba(0,0,0,0.12)]">
 
-      {/* ── IMAGE SECTION (FIXED HOVER SWAP) ── */}
-      <div className="aspect-square w-full overflow-hidden relative">
+      {/* IMAGE SECTION */}
+      <div className="relative aspect-square w-full overflow-hidden">
 
         {/* DEFAULT IMAGE */}
         <img
           src={product.image}
           alt={product.name}
-          className="absolute inset-0 h-full w-full object-cover opacity-100 transition duration-500 group-hover:opacity-0 group-hover:scale-105"
+          className="absolute inset-0 h-full w-full object-cover opacity-100 transition-all duration-500 group-hover:scale-105 group-hover:opacity-0"
         />
 
         {/* HOVER IMAGE */}
         <img
           src={product.imageHover || product.image}
           alt={product.name}
-          className="absolute inset-0 h-full w-full object-cover opacity-0 transition duration-500 group-hover:opacity-100 group-hover:scale-105"
+          className="absolute inset-0 h-full w-full object-cover opacity-0 transition-all duration-500 group-hover:scale-105 group-hover:opacity-100"
         />
 
       </div>
 
-      {/* ── CONTENT ── */}
+      {/* CONTENT */}
       <div className="p-3 sm:p-4">
 
-        {/* Product Name */}
-        <h4 className="line-clamp-2 text-sm font-semibold leading-snug text-stone-800 group-hover:text-[#7a1020] transition-colors duration-200">
+        {/* PRODUCT NAME */}
+        <h4 className="line-clamp-2 text-sm font-semibold leading-snug text-stone-800 transition-colors duration-300 group-hover:text-[#7a1020]">
           {product.name}
         </h4>
 
-        {/* Weight & Price */}
-        <div className="mt-2 flex items-center justify-between gap-1">
-          <span className="text-[11px] text-stone-400 truncate">
+        {/* WEIGHT + PRICE */}
+        <div className="mt-2 flex items-center justify-between gap-2">
+
+          <span className="truncate text-[11px] text-stone-400">
             {product.weight}
           </span>
+
           <span className="shrink-0 text-sm font-bold text-[#7a1020]">
             {product.price}
           </span>
+
         </div>
 
-        {/* Variants */}
+        {/* VARIANTS */}
         {product.variants && (
-          <p className="mt-1 truncate text-[11px] text-beige">
+          <p className="mt-1 truncate text-[11px] text-stone-500">
             {product.variants}
           </p>
         )}
 
-        {/* Buttons */}
-        <div className="mt-3 grid grid-cols-2 gap-2">
+        {/* BUTTONS */}
+        <div className="mt-4 flex items-center gap-2">
 
-          {/* Add to Cart */}
+          {/* ADD TO CART ICON BUTTON */}
           <button
             onClick={() => addToCart(product)}
-            className="rounded-full bg-gold px-2 py-2 text-[11px] font-semibold uppercase tracking-[0.12em] text-white transition hover:opacity-90 active:scale-95"
+            className="flex h-11 w-11 items-center justify-center rounded-full bg-gradient-to-r from-[#c49b63] to-[#7a1020] text-white shadow-md transition-all duration-300 hover:scale-105 hover:shadow-[0_10px_25px_rgba(122,16,32,0.35)] active:scale-95"
           >
-            Add Cart
+            <ShoppingBag size={18} strokeWidth={2.2} />
           </button>
 
-          {/* WhatsApp */}
+          {/* WHATSAPP BUTTON */}
           <a
-            href={`https://wa.me/919930670044?text=${encodeURIComponent(whatsappMessage)}`}
+            href={`https://wa.me/919930670044?text=${encodeURIComponent(
+              whatsappMessage
+            )}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center rounded-full bg-[#25D366] py-2 text-white transition hover:scale-105 active:scale-95"
+            className="flex h-11 flex-1 items-center justify-center rounded-full bg-[#25D366] text-white transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_10px_25px_rgba(37,211,102,0.3)] active:scale-95"
           >
             <WhatsAppIcon size={18} />
           </a>

@@ -103,9 +103,20 @@ import imgRichGold                   from "../assets/images/dhoop-sticks/rich-go
 import imgRichGoldHover              from "../assets/images/dhoop-sticks/rich-gold-hover.jpg";
 import imgDivineMeditation           from "../assets/images/dhoop-sticks/divine-meditation.jpg";
 import imgDivineMeditationHover      from "../assets/images/dhoop-sticks/divine-meditation-hover.jpg";
+import imgRedWoodDhoop               from "../assets/images/dhoop-sticks/red-wood.jpg";
+import imgRedWoodDhoopHover          from "../assets/images/dhoop-sticks/red-wood-hover.jpg";
+import imgMysoreChandan              from "../assets/images/dhoop-sticks/mysore-chandan.jpg";
+import imgMysoreСhandanHover         from "../assets/images/dhoop-sticks/mysore-chandan-hover.jpg";
+import imgKesarChandan               from "../assets/images/dhoop-sticks/kesar-chandan.jpg";
+import imgKesarChandanHover          from "../assets/images/dhoop-sticks/kesar-chandan-hover.jpg";
+import imgSaffronDhoop               from "../assets/images/dhoop-sticks/saffron.jpg";
+import imgSaffronDhoopHover          from "../assets/images/dhoop-sticks/saffron-hover.jpg";
+import imgRoyalKingDhoop           from "../assets/images/dhoop-sticks/royal-king.jpg";
+import imgRoyalKingDhoopHover      from "../assets/images/dhoop-sticks/royal-king-hover.jpg";
+import imgSignatureDhoop           from "../assets/images/dhoop-sticks/signature.jpg";
+import imgSignatureDhoopHover      from "../assets/images/dhoop-sticks/signature-hover.jpg";
 
-
-// ═══════════════════════════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════════════════════════x
 // ── CARD STYLES ────────────────────────────────────────────────────────────
 // ═══════════════════════════════════════════════════════════════════════════
 
@@ -423,6 +434,12 @@ export const productCatalog = {
           makeProduct("Aroma",             "50g", "₹75", "", imgAroma,            imgAromaHover),
           makeProduct("Rich Gold",         "50g", "₹75", "", imgRichGold,         imgRichGoldHover),
           makeProduct("Divine Meditation", "50g", "₹75", "", imgDivineMeditation, imgDivineMeditationHover),
+          makeProduct("Red Wood",          "50g", "₹135", "", imgRedWoodDhoop,     imgRedWoodDhoopHover),
+          makeProduct("Mysore Chandan",    "50g", "₹135", "", imgMysoreChandan,    imgMysoreСhandanHover),
+          makeProduct("Kesar Chandan",     "50g", "₹135", "", imgKesarChandan,     imgKesarChandanHover),
+          makeProduct("Saffron",           "50g", "₹150", "", imgSaffronDhoop,     imgSaffronDhoopHover),
+          makeProduct("Royal King",             "100g",    "₹180", "", imgRoyalKingDhoop,     imgRoyalKingDhoopHover),
+          makeProduct("Signature",              "100g",    "₹180", "", imgSignatureDhoop,     imgSignatureDhoopHover),
         ],
       },
     ],

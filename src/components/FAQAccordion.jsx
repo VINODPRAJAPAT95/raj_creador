@@ -28,11 +28,225 @@ const FAQAccordion = ({ items }) => {
         }}
       >
 
-        {/* BACKGROUND */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#fffdfd] via-[#fff7f9] to-[#fffdfd]" />
+        {/* PREMIUM BACKGROUND UI */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
 
-        {/* TOP GLOW */}
-        <div className="absolute left-1/2 top-0 h-[300px] w-[300px] -translate-x-1/2 rounded-full bg-[#7a1020]/5 blur-3xl" />
+          {/* BASE BACKGROUND */}
+          <div className="absolute inset-0 bg-gradient-to-br from-[#fffdfd] via-[#fff7f9] to-[#fffdfd]" />
+
+          {/* BIG GLOW */}
+          <div
+            className="
+              absolute
+              -top-32
+              -left-32
+              h-[420px]
+              w-[420px]
+              rounded-full
+              bg-[#7a1020]/10
+              blur-[120px]
+              animate-pulse
+            "
+          />
+
+          {/* RIGHT GLOW */}
+          <div
+            className="
+              absolute
+              top-20
+              right-0
+              h-[380px]
+              w-[380px]
+              rounded-full
+              bg-[#d4a54d]/10
+              blur-[120px]
+            "
+          />
+
+          {/* BOTTOM LIGHT */}
+          <div
+            className="
+              absolute
+              bottom-[-120px]
+              left-1/2
+              -translate-x-1/2
+              h-[320px]
+              w-[320px]
+              rounded-full
+              bg-[#7a1020]/10
+              blur-[120px]
+            "
+          />
+
+          {/* GRID */}
+          <div
+            className="
+              absolute inset-0
+              opacity-[0.04]
+              bg-[linear-gradient(to_right,#7a1020_1px,transparent_1px),linear-gradient(to_bottom,#7a1020_1px,transparent_1px)]
+              [background-size:70px_70px]
+            "
+          />
+
+          {/* TOP GLOW */}
+          <div className="absolute left-1/2 top-0 h-[300px] w-[300px] -translate-x-1/2 rounded-full bg-[#7a1020]/5 blur-3xl" />
+
+          {/* BOTTOM GLOW */}
+          <div className="absolute bottom-0 left-1/2 h-[220px] w-[420px] -translate-x-1/2 rounded-full bg-[#7a1020]/5 blur-3xl" />
+
+          {/* SMOKE EFFECT 1 */}
+          <motion.div
+            animate={{
+              x: [0, 40, 0],
+              y: [0, -30, 0],
+              opacity: [0.08, 0.16, 0.08],
+            }}
+            transition={{
+              duration: 10,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+            className="
+              absolute
+              top-10
+              left-10
+              h-[300px]
+              w-[300px]
+              rounded-full
+              bg-gradient-to-br
+              from-white
+              to-[#7a1020]/10
+              blur-[120px]
+            "
+          />
+
+          {/* SMOKE EFFECT 2 */}
+          <motion.div
+            animate={{
+              x: [0, -50, 0],
+              y: [0, -20, 0],
+              opacity: [0.05, 0.15, 0.05],
+            }}
+            transition={{
+              duration: 14,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+            className="
+              absolute
+              bottom-0
+              right-10
+              h-[350px]
+              w-[350px]
+              rounded-full
+              bg-gradient-to-br
+              from-[#d4a54d]/10
+              to-white
+              blur-[140px]
+            "
+          />
+
+          {/* FLOATING PARTICLES */}
+          {[...Array(15)].map((_, i) => (
+            <motion.div
+              key={i}
+              animate={{
+                y: [0, -30, 0],
+                opacity: [0.2, 0.7, 0.2],
+              }}
+              transition={{
+                duration: 4 + i,
+                repeat: Infinity,
+              }}
+              className="
+                absolute
+                rounded-full
+                bg-[#7a1020]/20
+              "
+              style={{
+                width: `${4 + (i % 4)}px`,
+                height: `${4 + (i % 4)}px`,
+                left: `${(i * 7) + 5}%`,
+                top: `${(i * 5) + 10}%`,
+              }}
+            />
+          ))}
+
+          {/* AGARBATTI */}
+          <div className="absolute bottom-0 left-10 opacity-20">
+
+            {/* Stick 1 */}
+            <div
+              className="
+                absolute
+                bottom-0
+                left-0
+                h-56
+                w-[3px]
+                rotate-[-12deg]
+                rounded-full
+                bg-gradient-to-b
+                from-[#2b1600]
+                to-[#7a4a00]
+              "
+            />
+
+            {/* Stick 2 */}
+            <div
+              className="
+                absolute
+                bottom-0
+                left-8
+                h-64
+                w-[3px]
+                rotate-[8deg]
+                rounded-full
+                bg-gradient-to-b
+                from-[#2b1600]
+                to-[#7a4a00]
+              "
+            />
+
+            {/* Burning Tip */}
+            <div
+              className="
+                absolute
+                left-7
+                top-0
+                h-3
+                w-3
+                rounded-full
+                bg-orange-500
+                blur-[2px]
+              "
+            />
+
+            {/* Smoke */}
+            <motion.div
+              animate={{
+                y: [0, -80],
+                x: [0, 20, -10, 0],
+                opacity: [0.25, 0],
+              }}
+              transition={{
+                duration: 5,
+                repeat: Infinity,
+                ease: "easeOut",
+              }}
+              className="
+                absolute
+                left-3
+                -top-24
+                h-40
+                w-24
+                rounded-full
+                bg-white/30
+                blur-[40px]
+              "
+            />
+          </div>
+
+        </div>
 
         {/* HEADER */}
         <div className="relative z-10 mb-14 text-center">
@@ -287,9 +501,6 @@ const FAQAccordion = ({ items }) => {
           })}
 
         </div>
-
-        {/* BOTTOM GLOW */}
-        <div className="absolute bottom-0 left-1/2 h-[220px] w-[420px] -translate-x-1/2 rounded-full bg-[#7a1020]/5 blur-3xl" />
 
       </section>
     </>
